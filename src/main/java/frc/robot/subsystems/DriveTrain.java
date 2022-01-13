@@ -24,7 +24,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
-    
+
     public DriveTrain(){
         sp_left1 = new Spark(Constants.DriveTrain.DRIVE_PWM_LEFT1);
         sp_left2 = new Spark(Constants.DriveTrain.DRIVE_PWM_LEFT2);
@@ -33,12 +33,23 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
+
+        NAVX.reset();
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
     }
-    public void fieldOrientedDrive(double joystickAngle, double strength) {
-        
+    public void fieldOrientedDrive(double joystickAngle, double x, double y) {
+        double strength = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+        if (strength > 0.1) {
+            if (joystickAngle + 4 > NAVX.getAngle()) {
+                dd_drive.arcadeDrive(0, -0.5); 
+            }else if (joystickAngle - 4 < NAVX.getAngle()) {
+                dd_drive.arcadeDrive(0, 0.5); 
+            }else {
+                dd_drive.arcadeDrive(0.75, 0);
+            }
+        }
     }
     
 }
