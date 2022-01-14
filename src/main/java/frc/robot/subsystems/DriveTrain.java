@@ -34,7 +34,7 @@ public class DriveTrain extends SubsystemBase
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
 
-        NAVX.reset();
+        NAVX.zeroYaw();
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
@@ -42,12 +42,14 @@ public class DriveTrain extends SubsystemBase
     public void fieldOrientedDrive(double joystickAngle, double x, double y) {
         double strength = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
         if (strength > 0.1) {
-            if (joystickAngle + 4 > NAVX.getAngle()) {
-                dd_drive.arcadeDrive(0, -0.5); 
-            }else if (joystickAngle - 4 < NAVX.getAngle()) {
-                dd_drive.arcadeDrive(0, 0.5); 
+            System.out.println("NAVX: " + NAVX.getAngle() + " Joystick: " + joystickAngle);
+            if (joystickAngle > NAVX.getAngle() + 4) {
+                dd_drive.arcadeDrive(0.5, 0); 
+            }else if (joystickAngle < NAVX.getAngle() - 4) {
+                dd_drive.arcadeDrive(-0.5, 0); 
             }else {
-                dd_drive.arcadeDrive(0.75, 0);
+                dd_drive.stopMotor();
+                //dd_drive.arcadeDrive(0, 0.5);
             }
         }
     }

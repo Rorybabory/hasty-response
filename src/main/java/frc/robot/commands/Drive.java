@@ -28,7 +28,7 @@ public class Drive extends CommandBase{
   @Override
   public void execute() {
       s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
-      s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
+      //s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
   }
 
   // Called once the command ends or is interrupted.
