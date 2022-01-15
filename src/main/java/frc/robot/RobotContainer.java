@@ -41,7 +41,8 @@ public class RobotContainer {
   private final MoveDoor m_moveDoor = new MoveDoor(m_door);
   private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
 
-  private final JoystickButton enableFlyWheel = new JoystickButton(j_joystick, 3);
+
+  private final JoystickButton b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
   private final Shooter flyWheel = new Shooter();
   private final JoystickButton b_resetNAVX;
   private final JoystickButton b_swapDir;
@@ -62,13 +63,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
-<<<<<<< HEAD
     b_doorButton.whenPressed(new MoveDoor(m_door));
-=======
-    enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 0.5));
+    b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0));
 
     b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
->>>>>>> 822aae4751d4606c30c7f6e5e0131445cc027b09
   }
 
   /**
