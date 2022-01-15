@@ -11,10 +11,13 @@ import frc.robot.commands.AutonomousThingy;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShootCommand;
+
+import frc.robot.commands.SwapDriveMode;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -31,8 +34,12 @@ public class RobotContainer {
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
   private final JoystickButton enableFlyWheel = new JoystickButton(j_joystick, 3);
   private final Shooter flyWheel = new Shooter();
+  private final JoystickButton b_resetNAVX;
+  private final JoystickButton b_swapDir;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    b_swapDir = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SWAP_DRIVE_DIR);
+    b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -44,8 +51,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 0.5));
+
+    b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
   }
 
   /**
