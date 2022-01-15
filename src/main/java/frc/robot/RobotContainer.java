@@ -10,9 +10,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutonomousThingy;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.SwapDriveMode;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,9 +29,12 @@ public class RobotContainer {
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
-
+  private final JoystickButton b_resetNAVX;
+  private final JoystickButton b_swapDir;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    b_swapDir = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SWAP_DRIVE_DIR);
+    b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -40,7 +46,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
+    b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
   }
 
   /**
