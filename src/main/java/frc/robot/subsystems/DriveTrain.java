@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 
 
@@ -23,6 +25,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_left;
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
+    private Encoder enc_Left, enc_Right;
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
 
     public DriveTrain(){
@@ -33,11 +36,24 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
+        enc_Left = new Encoder(Constants.DriveTrain.DRIVE_PWM_LEFT1, Constants.DriveTrain.DRIVE_PWM_LEFT2);
+        enc_Right = new Encoder(Constants.DriveTrain.DRIVE_PWM_RIGHT1, Constants.DriveTrain.DRIVE_PWM_RIGHT2);
+        enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
+        enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
+
 
         NAVX.reset();
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
+       
+    }
+    public double getEncoderLeft(){
+        
+        return enc_Left.getDistance();
+    }
+    public double getEncoderRight(){
+        return enc_Right.getDistance ();
     }
     public void fieldOrientedDrive(double joystickAngle, double x, double y) {
         double strength = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
@@ -50,6 +66,12 @@ public class DriveTrain extends SubsystemBase
                 dd_drive.arcadeDrive(0.75, 0);
             }
         }
+    }
+    @Override
+    public void periodic() {
+      // This method will be called once per scheduler run
+      SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
+      SmartDashboard.putNumber("Encoder Right", getEncoderRight());
     }
     
 }

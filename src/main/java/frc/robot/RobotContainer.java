@@ -10,9 +10,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutonomousThingy;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.MoveDoor;
+import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,10 +25,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final Door m_door = new Door();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
+  private final MoveDoor m_moveDoor = new MoveDoor(m_door);
+  private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -41,6 +47,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
+    b_doorButton.whenPressed(new MoveDoor(m_door));
   }
 
   /**
