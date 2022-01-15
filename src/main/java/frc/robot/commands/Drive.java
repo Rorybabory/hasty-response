@@ -27,7 +27,10 @@ public class Drive extends CommandBase{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
+
+      //s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
+      s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
+      //s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
       //s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
   }
 

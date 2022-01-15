@@ -10,9 +10,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutonomousThingy;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
+<<<<<<< HEAD
+import frc.robot.commands.MoveDoor;
+import frc.robot.subsystems.Door;
+=======
 import frc.robot.commands.ShootCommand;
 
 import frc.robot.commands.SwapDriveMode;
+>>>>>>> 822aae4751d4606c30c7f6e5e0131445cc027b09
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -28,10 +33,15 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final Door m_door = new Door();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
+  private final MoveDoor m_moveDoor = new MoveDoor(m_door);
+  private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
+
+
   private final JoystickButton b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
   private final Shooter flyWheel = new Shooter();
   private final JoystickButton b_resetNAVX;
@@ -53,6 +63,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
+    b_doorButton.whenPressed(new MoveDoor(m_door));
     b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0));
 
     b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));

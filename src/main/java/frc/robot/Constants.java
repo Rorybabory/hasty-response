@@ -18,6 +18,11 @@ public final class Constants {
         public static final int DRIVE_PWM_LEFT2 = 1;
         public static final int DRIVE_PWM_RIGHT1 = 2;
         public static final int DRIVE_PWM_RIGHT2 = 3;
+        public static final int DRIVE_PWM_ENC_LEFT1 = 6;
+        public static final int DRIVE_PWM_ENC_LEFT2 = 7;
+        public static final int DRIVE_PWM_ENC_RIGHT1 =  8;
+        public static final int DRIVE_PWM_ENC_RIGHT2 =  9;
+        public static final double DRIVE_DISTANCE_PER_PULSE = 0.004378531;
 
         //public static final int 
     }
@@ -26,6 +31,10 @@ public final class Constants {
         public static final int BUTTON_SHOOT_FLYWHEEL = 1;
         public static final int BUTTON_RESET_NAVX = 3;
         public static final int BUTTON_SWAP_DRIVE_DIR = 4;
+    }
+    public static final class Pneumatics{
+        public static final int SOLENOID_DIO_1 = 0;
+        public static final int SOLENOID_DIO_2 = 1;
     }
     public static final class Shooter {
         public static final int SHOOTER_CAN = 5;
