@@ -32,7 +32,7 @@ public class RobotContainer {
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
-  private final JoystickButton enableFlyWheel = new JoystickButton(j_joystick, 3);
+  private final JoystickButton b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
   private final Shooter flyWheel = new Shooter();
   private final JoystickButton b_resetNAVX;
   private final JoystickButton b_swapDir;
@@ -53,7 +53,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
-    enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 0.5));
+    b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0));
 
     b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
   }
