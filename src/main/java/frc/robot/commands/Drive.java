@@ -29,7 +29,7 @@ public class Drive extends CommandBase{
   public void execute() {
 
       //s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
-      s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
+      s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), 0.0f);
       //s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
       //s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), j_joystick.getZ());
   }

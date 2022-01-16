@@ -35,12 +35,14 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
-        enc_Left = new Encoder(Constants.DriveTrain.DRIVE_PWM_LEFT1, Constants.DriveTrain.DRIVE_PWM_LEFT2);
-        enc_Right = new Encoder(Constants.DriveTrain.DRIVE_PWM_RIGHT1, Constants.DriveTrain.DRIVE_PWM_RIGHT2);
+        enc_Left = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_LEFT1, Constants.DriveTrain.DRIVE_DIO_ENC_LEFT2, false);
+        enc_Right = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT1, Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT2, false);
         enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
         enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
 
-
+        enc_Left.reset();
+        enc_Right.reset();
+        
         NAVX.zeroYaw();
     }    
     public void arcadeDrive(double x, double y, double z){
@@ -48,11 +50,10 @@ public class DriveTrain extends SubsystemBase
        
     }
     public double getEncoderLeft(){
-        
         return enc_Left.getDistance();
     }
     public double getEncoderRight(){
-        return enc_Right.getDistance ();
+        return enc_Right.getDistance();
     }
     public void fieldOrientedDrive(double joystickAngle, double x, double y) {
         double turn_speed = 0.7;
@@ -84,6 +85,7 @@ public class DriveTrain extends SubsystemBase
       // This method will be called once per scheduler run
       SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
       SmartDashboard.putNumber("Encoder Right", getEncoderRight());
+      System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
     }
     
 }

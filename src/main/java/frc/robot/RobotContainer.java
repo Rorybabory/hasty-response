@@ -10,14 +10,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutonomousThingy;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
-<<<<<<< HEAD
 import frc.robot.commands.MoveDoor;
 import frc.robot.subsystems.Door;
-=======
 import frc.robot.commands.ShootCommand;
 
 import frc.robot.commands.SwapDriveMode;
->>>>>>> 822aae4751d4606c30c7f6e5e0131445cc027b09
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
