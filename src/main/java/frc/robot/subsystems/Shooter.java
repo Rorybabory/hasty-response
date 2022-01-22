@@ -11,8 +11,10 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
  private MotorController flyWheel;
+ private MotorController flyWheel2;
   public Shooter() {
       flyWheel = new CANSparkMax(Constants.Shooter.SHOOTER_CAN,MotorType.kBrushless);
+      flyWheel2 = new CANSparkMax(Constants.Shooter.SHOOTER_2_CAN,MotorType.kBrushless);
   }
 
   @Override
@@ -22,10 +24,12 @@ public class Shooter extends SubsystemBase {
 
   public void shoot(double speed){
       flyWheel.set(speed);
+      flyWheel2.set(-speed);
   }
 
   public void stopShoot(){
-      flyWheel.stopMotor();
+      flyWheel.set(0);
+      flyWheel2.set(0);
   }
 
   @Override

@@ -4,12 +4,16 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.SPI;
 
 
@@ -27,11 +31,19 @@ public class DriveTrain extends SubsystemBase
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
     boolean startingDrive = false; //used in Field Oriented Drive
     public boolean driveDir = true; // false = backwards true = forwards
-    public DriveTrain(){
-        sp_left1 = new Spark(Constants.DriveTrain.DRIVE_PWM_LEFT1);
-        sp_left2 = new Spark(Constants.DriveTrain.DRIVE_PWM_LEFT2);
-        sp_right1 = new Spark(Constants.DriveTrain.DRIVE_PWM_RIGHT1);
-        sp_right2 = new Spark(Constants.DriveTrain.DRIVE_PWM_RIGHT2);
+    public DriveTrain(boolean isCAN){
+        if (isCAN) {
+            sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
+            sp_left2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT2, MotorType.kBrushless);
+            sp_right1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT1, MotorType.kBrushless);
+            sp_right2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT2, MotorType.kBrushless);
+    
+        }else {
+            sp_left1 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT1);
+            sp_left2 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT2);
+            sp_right1 = new Talon(Constants.DriveTrain.DRIVE_PWM_RIGHT1);
+            sp_right2 = new Talon(Constants.DriveTrain.DRIVE_PWM_RIGHT2);
+        }
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
