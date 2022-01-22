@@ -34,7 +34,8 @@ public class ShootCommand extends CommandBase {
 
   @Override
   public void execute() {
-      s.shoot(speed);
+    System.out.println("shooting");
+    s.shoot(speed);
   }
 
   // Called once the command ends or is interrupted.
