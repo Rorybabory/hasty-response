@@ -31,6 +31,7 @@ public class DriveTrain extends SubsystemBase
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
     boolean startingDrive = false; //used in Field Oriented Drive
     public boolean driveDir = true; // false = backwards true = forwards
+    private DifferentialDriveOdometry odometry;
     public DriveTrain(boolean isCAN){
         if (isCAN) {
             sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
@@ -51,11 +52,10 @@ public class DriveTrain extends SubsystemBase
         enc_Right = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT1, Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT2, false);
         enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
         enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
-
         enc_Left.reset();
         enc_Right.reset();
-        
         NAVX.zeroYaw();
+        odometry = new DifferentialDriveOdometry(NAVX.getAngle()); //I think this has to be initiated after resetting encoders.
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
@@ -66,6 +66,9 @@ public class DriveTrain extends SubsystemBase
     }
     public double getEncoderRight(){
         return enc_Right.getDistance();
+    }
+    public void updateOdometry(){
+        odometry.update(NAVX.getAngle(), getEncoderLeft(), getEncoderRight());
     }
     public void fieldOrientedDrive(double joystickAngle, double x, double y) {
         double turn_speed = 0.7;
