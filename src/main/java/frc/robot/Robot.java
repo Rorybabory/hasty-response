@@ -47,9 +47,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
   @Override
-  public void Periodic() {
-   updateOdometry(); 
-  }
+  public void Periodic() {}
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
