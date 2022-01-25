@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.SPI;
 public class DriveTrain extends SubsystemBase
 {
     //initialize speed controllers and their groups.
+    private Field2d f_field;
     private MotorController sp_left1;
     private MotorController sp_left2;
     private MotorController sp_right1;
@@ -31,7 +32,7 @@ public class DriveTrain extends SubsystemBase
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
     boolean startingDrive = false; //used in Field Oriented Drive
     public boolean driveDir = true; // false = backwards true = forwards
-    private DifferentialDriveOdometry odometry;
+    private DifferentialDriveOdometry o_odometry;
     public DriveTrain(boolean isCAN){
         if (isCAN) {
             sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
@@ -45,6 +46,7 @@ public class DriveTrain extends SubsystemBase
             sp_right1 = new Talon(Constants.DriveTrain.DRIVE_PWM_RIGHT1);
             sp_right2 = new Talon(Constants.DriveTrain.DRIVE_PWM_RIGHT2);
         }
+        f_field = new Field2d();
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
@@ -55,7 +57,7 @@ public class DriveTrain extends SubsystemBase
         enc_Left.reset();
         enc_Right.reset();
         NAVX.zeroYaw();
-        odometry = new DifferentialDriveOdometry(NAVX.getAngle()); //I think this has to be initiated after resetting encoders.
+        o_odometry = new DifferentialDriveOdometry(NAVX.getAngle()); //I think this has to be initiated after resetting encoders.
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
@@ -68,7 +70,7 @@ public class DriveTrain extends SubsystemBase
         return enc_Right.getDistance();
     }
     public void updateOdometry(){
-        odometry.update(NAVX.getAngle(), getEncoderLeft(), getEncoderRight());
+        o_odometry.update(NAVX.getAngle(), getEncoderLeft(), getEncoderRight());
     }
     public void fieldOrientedDrive(double joystickAngle, double x, double y) {
         double turn_speed = 0.7;
@@ -101,6 +103,10 @@ public class DriveTrain extends SubsystemBase
       SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
       SmartDashboard.putNumber("Encoder Right", getEncoderRight());
       System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
+      o_odometry.update(NAVX.getAngle(), getEncoderLeft(), getEncoderRight());
+      SmartDashboard.putData("Field", f_field);
+      f_field.setRobotPose(o_odometry.getPoseMeters());
+      
     }
     
 }
