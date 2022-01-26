@@ -24,11 +24,12 @@ public final class Constants {
         public static final int DRIVE_CAN_RIGHT1 = 4;
         public static final int DRIVE_CAN_RIGHT2 = 5;
 
-        public static final int DRIVE_DIO_ENC_LEFT1 = 6;
-        public static final int DRIVE_DIO_ENC_LEFT2 = 7;
-        public static final int DRIVE_DIO_ENC_RIGHT1 =  8;
-        public static final int DRIVE_DIO_ENC_RIGHT2 =  9;
-        public static final double DRIVE_DISTANCE_PER_PULSE = 0.004378531;
+        public static final int DRIVE_DIO_ENC_LEFT1 = 7;
+        public static final int DRIVE_DIO_ENC_LEFT2 = 6;
+        public static final int DRIVE_DIO_ENC_RIGHT1 =  9;
+        public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
+        public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 0.0012101341281669;
+        public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 0.0003752310536044362;
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
