@@ -35,7 +35,6 @@ public final class Constants {
         public static final int JOYSTICK_USB = 0;
         public static final int BUTTON_SHOOT_FLYWHEEL = 1;
         public static final int BUTTON_RESET_NAVX = 3;
-        public static final int BUTTON_SWAP_DRIVE_DIR = 4;
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out

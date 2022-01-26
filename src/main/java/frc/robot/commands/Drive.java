@@ -39,7 +39,6 @@ public class Drive extends CommandBase{
     joystickX.setDouble(j_joystick.getX());
     joystickY.setDouble(j_joystick.getY());
     s_driveTrain.arcadeDrive(j_joystick.getX(), j_joystick.getY(), 0.0f);
-    //s_driveTrain.fieldOrientedDrive(j_joystick.getDirectionDegrees(), j_joystick.getX(), j_joystick.getY());
   }
 
   // Called once the command ends or is interrupted.
