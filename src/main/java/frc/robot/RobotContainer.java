@@ -7,14 +7,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.AutonomousThingy;
+import frc.robot.commands.AutoFWD;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.MoveDoor;
 import frc.robot.subsystems.Door;
 import frc.robot.commands.ShootCommand;
 
-import frc.robot.commands.SwapDriveMode;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -31,21 +30,19 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Door m_door = new Door();
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain(true);
-  private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
+  private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
   private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
 
 
-  private final JoystickButton b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
+  private final JoystickButton b_enableFlyWheel;
   private final Shooter flyWheel = new Shooter();
   private final JoystickButton b_resetNAVX;
-  private final JoystickButton b_swapDir;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    b_swapDir = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SWAP_DRIVE_DIR);
     b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
+    b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -62,7 +59,6 @@ public class RobotContainer {
     b_doorButton.whenPressed(new MoveDoor(m_door, true));
     b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0));
 
-    b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
   }
 
   /**
@@ -72,6 +68,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An AutonomousThingy will run in autonomous
-    return a_autononousThingy;
+    return a_auto_forward;
   }
 }
