@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -36,10 +33,9 @@ public class RobotContainer {
   private final Door m_door = new Door();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
-  private final DriveTrain m_driveTrain = new DriveTrain(true); //parameter defines whether driving with CAN speed controllers or PWM
+  private final DriveTrain m_driveTrain = new DriveTrain(true);
   private final AutonomousThingy a_autononousThingy = new AutonomousThingy(m_driveTrain);
-  private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 3);
-  private final JoystickButton b_doorButton_2 = new JoystickButton(j_joystick, 4);
+  private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
 
 
   private final JoystickButton b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
@@ -52,9 +48,6 @@ public class RobotContainer {
     b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
     // Configure the button bindings
     configureButtonBindings();
-    CameraServer.startAutomaticCapture();
-   // CvSink cvSink = CameraServer.getVideo();
-   // CvSource outputStream = CameraServer.putVideo("Name", 160, 120);
   }
 
   /**
@@ -66,9 +59,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
-    b_doorButton.whileHeld(new MoveDoor(m_door, true));
-    b_doorButton_2.whileHeld(new MoveDoor(m_door, false));
-    b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0 ));
+    b_doorButton.whenPressed(new MoveDoor(m_door, true));
+    b_enableFlyWheel.whileHeld(new ShootCommand(flyWheel, 1.0));
 
     b_swapDir.whileHeld(new SwapDriveMode(m_driveTrain));
   }
