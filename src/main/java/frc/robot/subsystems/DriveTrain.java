@@ -62,7 +62,6 @@ public class DriveTrain extends SubsystemBase
         enc_Right.reset();
         NAVX.zeroYaw();
         r_rotation = NAVX.getRotation2d();
-
          //I think this has to be initiated after resetting encoders.
     }    
     public void arcadeDrive(double x, double y, double z){
