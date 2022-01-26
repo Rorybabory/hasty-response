@@ -56,8 +56,8 @@ public class DriveTrain extends SubsystemBase
         dd_drive = new DifferentialDrive(spg_left, spg_right);
         enc_Left = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_LEFT1, Constants.DriveTrain.DRIVE_DIO_ENC_LEFT2, false);
         enc_Right = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT1, Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT2, false);
-        enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
-        enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE);
+        // enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE_LEFT);
+        // enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE_RIGHT);
         enc_Left.reset();
         enc_Right.reset();
         NAVX.zeroYaw();
@@ -69,10 +69,10 @@ public class DriveTrain extends SubsystemBase
        
     }
     public double getEncoderLeft(){
-        return enc_Left.getDistance();
+        return enc_Left.get();
     }
     public double getEncoderRight(){
-        return enc_Right.getDistance();
+        return enc_Right.get();
     }
     public void updateOdometry(){
         o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
@@ -108,7 +108,7 @@ public class DriveTrain extends SubsystemBase
       SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
       SmartDashboard.putNumber("Encoder Right", getEncoderRight());
       System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
-      o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
+      o_odometry.update(new Rotation2d(), getEncoderLeft(), getEncoderRight());
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
       
