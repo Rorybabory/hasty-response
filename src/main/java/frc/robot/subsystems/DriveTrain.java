@@ -19,6 +19,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SPI;
 
+import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 public class DriveTrain extends SubsystemBase
 {
@@ -31,17 +33,21 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_left;
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
-    private Encoder enc_Left, enc_Right;
+    // private Encoder enc_Left, enc_Right;
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
-    public DriveTrain(boolean isCAN){
-
-        if (isCAN) {
-            sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
-            sp_left2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT2, MotorType.kBrushless);
-            sp_right1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT1, MotorType.kBrushless);
-            sp_right2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT2, MotorType.kBrushless);
+    boolean isSpark = false;
     
+    //an array of speed controller pointers for spark max specific code
+    public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
+
+    public DriveTrain(boolean isCAN){
+        this.isSpark = isCAN;
+        if (isCAN) {
+            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
+            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
+            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
+            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
         }else {
             sp_left1 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT1);
             sp_left2 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT2);
@@ -52,22 +58,33 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
-        enc_Left = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_LEFT1, Constants.DriveTrain.DRIVE_DIO_ENC_LEFT2, false);
-        enc_Right = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT1, Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT2, false);
+        // enc_Left = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_LEFT1, Constants.DriveTrain.DRIVE_DIO_ENC_LEFT2, false);
+        // enc_Right = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT1, Constants.DriveTrain.DRIVE_DIO_ENC_RIGHT2, false);
         // enc_Left.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE_LEFT);
         // enc_Right.setDistancePerPulse(Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE_RIGHT);
-        enc_Left.reset();
-        enc_Right.reset();
+        // enc_Left.reset();
+        // enc_Right.reset();
         NAVX.zeroYaw();
     }    
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
     }
     public double getEncoderLeft(){
-        return enc_Left.get();
+        if (isSpark) {
+            return sparkMotors.get(0).getEncoder().getPosition();
+        }else {
+            System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
+            return -1.;
+        }
+        
     }
     public double getEncoderRight(){
-        return enc_Right.get();
+        if (isSpark) {
+            return sparkMotors.get(2).getEncoder().getPosition();
+        }else {
+            System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
+            return -1.;
+        }
     }
     public void updateOdometry(){
         o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
