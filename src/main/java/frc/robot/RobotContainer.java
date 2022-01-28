@@ -31,7 +31,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Door m_door = new Door();
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
-  private final DriveTrain m_driveTrain = new DriveTrain(true);
+  private final DriveTrain m_driveTrain = new DriveTrain(false);
   private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
   private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
 
