@@ -40,6 +40,22 @@ public final class Constants {
                                                                  new Pose2d(new Translation2d(8,4), new Rotation2d(0)), 
                                                                  new Pose2d(new Translation2d(4,1), new Rotation2d(0)), 
                                                                  new Pose2d(new Translation2d(3,6), new Rotation2d(0))};
+        public static final String[] DRIVE_SPARK_ERRORS = {new String("Brownout"),
+                                                           new String("CANRX"),
+                                                           new String("CANTX"),
+                                                           new String("DRVFault"),
+                                                           new String("EEPROMCRC"),
+                                                           new String("HardLimitFwd"),
+                                                           new String("HardLimitRev"),
+                                                           new String("HasReset"),
+                                                           new String("IWDTReset"),
+                                                           new String("MotorFault"),
+                                                           new String("OtherFault"),
+                                                           new String("Overcurrent"),
+                                                           new String("SensorFault"),
+                                                           new String("SoftLimitFwd"),
+                                                           new String("SoftLimitRev"),
+                                                           new String("Stall")};
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;

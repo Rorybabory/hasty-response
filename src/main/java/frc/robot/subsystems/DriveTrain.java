@@ -15,8 +15,12 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SPI;
@@ -36,6 +40,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_left;
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
+    private NetworkTable nt_sptable;
     
     // private Encoder enc_Left, enc_Right;
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
@@ -62,6 +67,8 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
+        NetworkTableInstance sparkErrors = NetworkTableInstance.getDefault();
+       // nt_sptable = new NetworkTable(null, null)
         
 
         // enc_Left = new Encoder(Constants.DriveTrain.DRIVE_DIO_ENC_LEFT1, Constants.DriveTrain.DRIVE_DIO_ENC_LEFT2, false);
@@ -109,6 +116,22 @@ public class DriveTrain extends SubsystemBase
     public void updateOdometry(){
         o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
     }
+    public void outputErrors(){
+        if(isSpark){
+            for(int i = 0; i < 4; i++){
+                short error = sparkMotors.get(i).getFaults();
+                SmartDashboard.putString("SparkMAX "+ i + "error", sparkMotors.get(i).getLastError().toString());
+                for(int x = 0; x < 16; x++){
+                    short bitmask = (short) Math.pow(2, x);
+                    short result = (short) (error & bitmask);
+                    if(result >0){
+                        SmartDashboard.putString("SparkMAX "+ i + " fault", Constants.DriveTrain.DRIVE_SPARK_ERRORS[x]);
+                    }
+                }
+            
+            }
+        }
+    }
   
     @Override
     public void periodic() {
@@ -119,5 +142,8 @@ public class DriveTrain extends SubsystemBase
       updateOdometry();
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
+      outputErrors();
+      
     }
+    
 }
