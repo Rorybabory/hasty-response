@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -41,6 +42,8 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     private NetworkTable nt_sptable;
+    private NetworkTableEntry[] nte_sparkErrors;
+    private NetworkTableEntry[] nte_sparkFaults;
     
     // private Encoder enc_Left, enc_Right;
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
@@ -67,7 +70,14 @@ public class DriveTrain extends SubsystemBase
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
         dd_drive = new DifferentialDrive(spg_left, spg_right);
-        NetworkTableInstance sparkErrors = NetworkTableInstance.getDefault();
+        NetworkTableInstance inst = NetworkTableInstance.getDefault();
+        nt_sptable = inst.getTable("SparkMAX Debugging");
+        nte_sparkErrors = new NetworkTableEntry[4];
+        nte_sparkFaults = new NetworkTableEntry[4];
+        for(int i = 0; i<4; i++){
+            nte_sparkFaults[i] = nt_sptable.getEntry("Fault " + i);
+            nte_sparkErrors[i] = nt_sptable.getEntry("Error " + i);
+        }
        // nt_sptable = new NetworkTable(null, null)
         
 
@@ -121,11 +131,13 @@ public class DriveTrain extends SubsystemBase
             for(int i = 0; i < 4; i++){
                 short error = sparkMotors.get(i).getFaults();
                 SmartDashboard.putString("SparkMAX "+ i + "error", sparkMotors.get(i).getLastError().toString());
+                nte_sparkErrors[i].setString(sparkMotors.get(i).getLastError().toString());
                 for(int x = 0; x < 16; x++){
                     short bitmask = (short) Math.pow(2, x);
                     short result = (short) (error & bitmask);
                     if(result >0){
                         SmartDashboard.putString("SparkMAX "+ i + " fault", Constants.DriveTrain.DRIVE_SPARK_ERRORS[x]);
+                        nte_sparkFaults[x].setString(Constants.DriveTrain.DRIVE_SPARK_ERRORS[x]);
                     }
                 }
             
