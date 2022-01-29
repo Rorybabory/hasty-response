@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -30,6 +34,12 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
         public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 0.0012101341281669;
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 0.0003752310536044362;
+        public static final Pose2d[] DRIVE_STARTING_LOCATIONS = {new Pose2d(new Translation2d(5,5), new Rotation2d(0)),
+                                                                 new Pose2d(new Translation2d(6,3), new Rotation2d(0)), 
+                                                                 new Pose2d(new Translation2d(7,2), new Rotation2d(0)), 
+                                                                 new Pose2d(new Translation2d(8,4), new Rotation2d(0)), 
+                                                                 new Pose2d(new Translation2d(4,1), new Rotation2d(0)), 
+                                                                 new Pose2d(new Translation2d(3,6), new Rotation2d(0))};
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
