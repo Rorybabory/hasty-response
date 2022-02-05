@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 
+import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Shooter;
 
 // Copyright (c) FIRST and other WPILib contributors.
@@ -13,13 +14,13 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ShootCommand extends CommandBase {
+public class Shoot extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter s;
   private double speed;
 
  
-  public ShootCommand(Shooter subsystem, double sp) {
+  public Shoot(Shooter subsystem, double sp) {
     s = subsystem;
     speed = sp;
     addRequirements(subsystem);

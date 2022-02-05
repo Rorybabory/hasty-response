@@ -33,15 +33,20 @@ public final class Constants {
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
-        public static final int BUTTON_SHOOT_FLYWHEEL = 1;
+        public static final int BUTTON_SHOOT_FLYWHEEL = 5;
+        public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
         public static final int BUTTON_RESET_NAVX = 3;
+        public static final int BUTTON_DOOR = 4;
+        public static final int BUTTON_HANGER_UP = 1;
+        public static final int BUTTON_HANGER_DOWN = 2;
+        
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
         public static final int SOLENOID_PCM_2 = 1; //In
     }
-    public static final class Shooter {
-        public static final int SHOOTER_CAN = 7;
-        public static final int SHOOTER_2_CAN = 8;
+    public static final class Hanger {
+        public static final int HANGER_CAN = 8;
+        public static final int HANGER_2_CAN = 9;
     }
 }

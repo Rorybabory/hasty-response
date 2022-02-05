@@ -9,15 +9,12 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
-
-
-public class Shooter extends SubsystemBase {
- private MotorController flyWheel;
- private MotorController flyWheel2;
-  public Shooter() {
-    flyWheel = new Talon(0);
-    flyWheel2 = new Talon(1);
+public class Hanger extends SubsystemBase {
+ private MotorController motor1;
+ private MotorController motor2;
+  public Hanger() {
+      motor1 = new CANSparkMax(Constants.Hanger.HANGER_CAN,MotorType.kBrushless);
+      motor2 = new CANSparkMax(Constants.Hanger.HANGER_2_CAN,MotorType.kBrushless);
   }
 
   @Override
@@ -26,14 +23,13 @@ public class Shooter extends SubsystemBase {
   }
 
   public void shoot(double speed){
-      flyWheel.set(speed);
-      flyWheel2.set(-speed);
-      System.out.println("shooting");
+      motor1.set(speed);
+      motor2.set(-speed);
   }
 
   public void stopShoot(){
-      flyWheel.set(0);
-      flyWheel2.set(0);
+      motor1.set(0);
+      motor2.set(0);
   }
 
   @Override
