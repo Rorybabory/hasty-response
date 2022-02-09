@@ -34,6 +34,9 @@ public class RobotContainer {
   private final DriveTrain m_driveTrain = new DriveTrain(false);
   private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
   private final JoystickButton b_doorButton = new JoystickButton(j_joystick, 2);
+  private final JoystickButton b_intakeExtend;
+  private final JoystickButton b_intakeRetrack;
+  private final JoystickButton b_enableIntake;
 
 
   private final JoystickButton b_enableFlyWheel;
@@ -43,6 +46,11 @@ public class RobotContainer {
   public RobotContainer() {
     b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
     b_enableFlyWheel = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
+    b_intakeExtend = new JoystickButton(j_joystick, Constants.Controls.BUTTON_EXTEND_INTAKE);
+    b_intakeRetrack = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RETRACT_INTAKE);
+    b_enableIntake = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RUN_INTAKE);
+
+
     // Configure the button bindings
     configureButtonBindings();
   }
