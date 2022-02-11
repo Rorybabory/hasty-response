@@ -49,8 +49,13 @@ public final class Constants {
         public static final int SOLENOID_PCM_2 = 1; //In
     }
     public static final class Hanger {
-        public static final int HANGER_CAN = 8;
-        public static final int HANGER_2_CAN = 9;
+        public static final int HANGER_CAN = 9;
+        public static final int HANGER_CAN_2 = 8;
+    }
+    public static final class Shooter {
+        public static final double SHOOTER_SPEED = 0.43;
+        public static final int SHOOTER_PWM_0 = 0;
+        public static final int SHOOTER_PWM_1 = 1;
     }
     public static final class Intake {
         public static final int INTAKE_TALON_PWM = 0;

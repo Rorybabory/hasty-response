@@ -16,8 +16,8 @@ public class Shooter extends SubsystemBase {
  private MotorController flyWheel;
  private MotorController flyWheel2;
   public Shooter() {
-    flyWheel = new Talon(0);
-    flyWheel2 = new Talon(1);
+    flyWheel = new Talon(Constants.Shooter.SHOOTER_PWM_0);
+    flyWheel2 = new Talon(Constants.Shooter.SHOOTER_PWM_1);
   }
 
   @Override
