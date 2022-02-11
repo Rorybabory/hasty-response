@@ -4,10 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -34,40 +30,23 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
         public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 0.0012101341281669;
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 0.0003752310536044362;
-        public static final Pose2d[] DRIVE_STARTING_LOCATIONS = {new Pose2d(new Translation2d(5,5), new Rotation2d(0)),
-                                                                 new Pose2d(new Translation2d(6,3), new Rotation2d(0)), 
-                                                                 new Pose2d(new Translation2d(7,2), new Rotation2d(0)), 
-                                                                 new Pose2d(new Translation2d(8,4), new Rotation2d(0)), 
-                                                                 new Pose2d(new Translation2d(4,1), new Rotation2d(0)), 
-                                                                 new Pose2d(new Translation2d(3,6), new Rotation2d(0))};
-        public static final String[] DRIVE_SPARK_ERRORS = {new String("Brownout"),
-                                                           new String("CANRX"),
-                                                           new String("CANTX"),
-                                                           new String("DRVFault"),
-                                                           new String("EEPROMCRC"),
-                                                           new String("HardLimitFwd"),
-                                                           new String("HardLimitRev"),
-                                                           new String("HasReset"),
-                                                           new String("IWDTReset"),
-                                                           new String("MotorFault"),
-                                                           new String("OtherFault"),
-                                                           new String("Overcurrent"),
-                                                           new String("SensorFault"),
-                                                           new String("SoftLimitFwd"),
-                                                           new String("SoftLimitRev"),
-                                                           new String("Stall")};
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
-        public static final int BUTTON_SHOOT_FLYWHEEL = 1;
+        public static final int BUTTON_SHOOT_FLYWHEEL = 5;
+        public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
         public static final int BUTTON_RESET_NAVX = 3;
+        public static final int BUTTON_DOOR = 4;
+        public static final int BUTTON_HANGER_UP = 1;
+        public static final int BUTTON_HANGER_DOWN = 2;
+        
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
         public static final int SOLENOID_PCM_2 = 1; //In
     }
-    public static final class Shooter {
-        public static final int SHOOTER_CAN = 7;
-        public static final int SHOOTER_2_CAN = 8;
+    public static final class Hanger {
+        public static final int HANGER_CAN = 8;
+        public static final int HANGER_2_CAN = 9;
     }
 }

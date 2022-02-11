@@ -12,10 +12,9 @@ public class AutoFWD  extends CommandBase{
     @Override
     public void initialize(){
         System.out.println("initializing autonomous");
-        drive.setOdometryPosition();
     }
     public void execute (){
-        //drive.setOdometryPosition();
+        drive.arcadeDrive(0, .3, .0);
     }
 }
 
