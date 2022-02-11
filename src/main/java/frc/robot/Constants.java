@@ -22,7 +22,7 @@ public final class Constants {
         public static final int DRIVE_CAN_LEFT1 = 2;
         public static final int DRIVE_CAN_LEFT2 = 3;
         public static final int DRIVE_CAN_RIGHT1 = 4;
-        public static final int DRIVE_CAN_RIGHT2 = 5;
+        public static final int DRIVE_CAN_RIGHT2 = 5; 
 
         public static final int DRIVE_DIO_ENC_LEFT1 = 7;
         public static final int DRIVE_DIO_ENC_LEFT2 = 6;
@@ -39,7 +39,9 @@ public final class Constants {
         public static final int BUTTON_DOOR = 4;
         public static final int BUTTON_HANGER_UP = 1;
         public static final int BUTTON_HANGER_DOWN = 2;
-        
+        public static final int BUTTON_INTAKE_EXTEND = 4;
+        public static final int BUTTON_INTAKE_RETRACT = 3;
+        public static final int BUTTON_INTAKE_ROLLER = 11;
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
