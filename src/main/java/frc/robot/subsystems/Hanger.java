@@ -14,7 +14,7 @@ public class Hanger extends SubsystemBase {
  private MotorController motor2;
   public Hanger() {
       motor1 = new CANSparkMax(Constants.Hanger.HANGER_CAN,MotorType.kBrushless);
-      motor2 = new CANSparkMax(Constants.Hanger.HANGER_2_CAN,MotorType.kBrushless);
+      motor2 = new CANSparkMax(Constants.Hanger.HANGER_CAN_2,MotorType.kBrushless);
   }
 
   @Override

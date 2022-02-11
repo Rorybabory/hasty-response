@@ -67,10 +67,10 @@ public class RobotContainer {
     b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     b_doorButton.whenPressed(new MoveDoor(m_door, true));
-    b_hanger_up.whileHeld(new HangMove(flyWheel, 0.8));
+    b_hanger_up.whileHeld(new HangMove(flyWheel, 0.35));
     b_hanger_down.whileHeld(new HangMove(flyWheel, -0.8));
-    b_runShooter.whileHeld(new Shoot(m_shooter, 1.0));
-    b_runShooter_2.whileHeld(new Shoot(m_shooter, -1.0));
+    b_runShooter.whileHeld(new Shoot(m_shooter, Constants.Shooter.SHOOTER_SPEED));
+    b_runShooter_2.whileHeld(new Shoot(m_shooter, -Constants.Shooter.SHOOTER_SPEED));
   }
 
   /**
