@@ -46,6 +46,8 @@ public class RobotContainer {
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
 
+  private final JoystickButton b_doorButton;
+
 
   private final JoystickButton b_hanger_up;
   private final JoystickButton b_hanger_down;
@@ -64,6 +66,7 @@ public class RobotContainer {
     b_intakeExtend = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND);
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -87,7 +90,6 @@ public class RobotContainer {
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
 
 
-    
   }
 
   /**
