@@ -57,7 +57,7 @@ public final class Constants {
         public static final int SHOOTER_PWM_1 = 1;
     }
     public static final class Intake {
-        public static final int INTAKE_TALON_PWM = 0;
+        public static final int INTAKE_MOTOR_CAN = 7;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
         public static final double INTAKE_SPEED = .5;
