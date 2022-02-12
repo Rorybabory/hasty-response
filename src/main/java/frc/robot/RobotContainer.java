@@ -46,7 +46,6 @@ public class RobotContainer {
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
 
-  private final JoystickButton b_doorButton;
 
 
   private final JoystickButton b_hanger_up;
