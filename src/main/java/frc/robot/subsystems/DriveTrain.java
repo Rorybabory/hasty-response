@@ -39,15 +39,15 @@ public class DriveTrain extends SubsystemBase
     boolean isSpark = false;
     
     //an array of speed controller pointers for spark max specific code
-    public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
-
+    //public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
+    
     public DriveTrain(boolean isCAN){
         this.isSpark = isCAN;
         if (isCAN) {
-            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
+            sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
+            sp_left2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT2, MotorType.kBrushless);
+            sp_right1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT1, MotorType.kBrushless);
+            sp_right2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT2, MotorType.kBrushless);
         }else {
             sp_left1 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT1);
             sp_left2 = new Talon(Constants.DriveTrain.DRIVE_PWM_LEFT2);
@@ -69,33 +69,33 @@ public class DriveTrain extends SubsystemBase
     public void arcadeDrive(double x, double y, double z){
        dd_drive.arcadeDrive(-x, (y+(z*.5))); 
     }
-    public double getEncoderLeft(){
-        if (isSpark) {
-            return sparkMotors.get(0).getEncoder().getPosition();
-        }else {
-            System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
-            return -1.;
-        }
+    // public double getEncoderLeft(){
+    //     if (isSpark) {
+    //         return sparkMotors.get(0).getEncoder().getPosition();
+    //     }else {
+    //         System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
+    //         return -1.;
+    //     }
         
-    }
-    public double getEncoderRight(){
-        if (isSpark) {
-            return sparkMotors.get(2).getEncoder().getPosition();
-        }else {
-            System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
-            return -1.;
-        }
-    }
+    // }
+    // public double getEncoderRight(){
+    //     if (isSpark) {
+    //         return sparkMotors.get(2).getEncoder().getPosition();
+    //     }else {
+    //         System.out.println("CAUTION: ATTEMPTING TO ACCESS ENCODER ON TALON");
+    //         return -1.;
+    //     }
+    // }
     public void updateOdometry(){
-        o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
+        // o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
     }
         
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
-      SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
-      SmartDashboard.putNumber("Encoder Right", getEncoderRight());
-      System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
+    //   SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
+    //   SmartDashboard.putNumber("Encoder Right", getEncoderRight());
+    //   System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
       updateOdometry();
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());

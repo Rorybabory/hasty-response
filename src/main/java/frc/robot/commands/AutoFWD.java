@@ -14,6 +14,7 @@ public class AutoFWD  extends CommandBase{
         System.out.println("initializing autonomous");
     }
     public void execute (){
+        
         drive.arcadeDrive(0, .3, .0);
     }
 }
