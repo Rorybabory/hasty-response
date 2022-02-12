@@ -36,7 +36,6 @@ public final class Constants {
         public static final int BUTTON_SHOOT_FLYWHEEL = 5;
         public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
         public static final int BUTTON_RESET_NAVX = 3;
-        public static final int BUTTON_DOOR = 4;
         public static final int BUTTON_HANGER_UP = 1;
         public static final int BUTTON_HANGER_DOWN = 2;
         public static final int BUTTON_INTAKE_EXTEND = 4;

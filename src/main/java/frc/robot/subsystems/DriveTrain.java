@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.wpilibj.Encoder;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
@@ -19,7 +17,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SPI;
 
-import java.util.ArrayList;
 
 public class DriveTrain extends SubsystemBase
 {
@@ -33,7 +30,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     // private Encoder enc_Left, enc_Right;
-    public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
+    public AHRS NAVX = new AHRS(SPI.Port.kMXP);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
     boolean isSpark = false;
     
