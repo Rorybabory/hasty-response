@@ -1,47 +1,44 @@
-package frc.robot.commands;
-
-
-import frc.robot.subsystems.Shooter;
-
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
+package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ShootCommand extends CommandBase {
+public class IntakeBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Shooter s;
+  private final Intake m_intake;
   private double speed;
 
- 
-  public ShootCommand(Shooter subsystem, double sp) {
-    s = subsystem;
-    speed = sp;
-    addRequirements(subsystem);
+  /**
+   * Creates a new ExampleCommand.
+   *
+   * @param subsystem The subsystem used by this command.
+   */
+  public IntakeBall(Intake i) {
+    m_intake = i;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(i);
   }
 
-
+  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {}
 
-  }
-
-
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("shooting");
-    s.shoot(speed);
+      m_intake.enableMotor();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      s.stopShoot();
+      m_intake.disableMotor();
   }
 
   // Returns true when the command should end.
@@ -50,4 +47,3 @@ public class ShootCommand extends CommandBase {
     return false;
   }
 }
-

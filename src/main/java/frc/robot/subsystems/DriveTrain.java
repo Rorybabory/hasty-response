@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.SPI;
 
 import java.util.ArrayList;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 public class DriveTrain extends SubsystemBase
 {
     //initialize speed controllers and their groups.
@@ -67,7 +66,8 @@ public class DriveTrain extends SubsystemBase
         NAVX.zeroYaw();
     }    
     public void arcadeDrive(double x, double y, double z){
-       dd_drive.arcadeDrive(-x, (y+(z*.5))); 
+      dd_drive.arcadeDrive(-x, (y+(z*.5))); 
+      System.out.println("running arcade drive");
     }
     // public double getEncoderLeft(){
     //     if (isSpark) {
@@ -86,9 +86,9 @@ public class DriveTrain extends SubsystemBase
     //         return -1.;
     //     }
     // }
-    public void updateOdometry(){
-        // o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
-    }
+    // public void updateOdometry(){
+    //     o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
+    // }
         
     @Override
     public void periodic() {
@@ -96,7 +96,8 @@ public class DriveTrain extends SubsystemBase
     //   SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
     //   SmartDashboard.putNumber("Encoder Right", getEncoderRight());
     //   System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
-      updateOdometry();
+
+    //   updateOdometry();
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
     }
