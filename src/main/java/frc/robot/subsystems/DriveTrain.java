@@ -38,15 +38,11 @@ public class DriveTrain extends SubsystemBase
     boolean isSpark = false;
     
     //an array of speed controller pointers for spark max specific code
-    public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
-
+    //public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
+    
     public DriveTrain(boolean isCAN){
         this.isSpark = isCAN;
         if (isCAN) {
-            // sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            // sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            // sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
-            // sparkMotors.add(new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless));
             sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
             sp_left2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT2, MotorType.kBrushless);
             sp_right1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT1, MotorType.kBrushless);
@@ -100,6 +96,7 @@ public class DriveTrain extends SubsystemBase
     //   SmartDashboard.putNumber("Encoder Left", getEncoderLeft());
     //   SmartDashboard.putNumber("Encoder Right", getEncoderRight());
     //   System.out.println("enc left: " + getEncoderLeft() + " enc right: " + getEncoderRight());
+
     //   updateOdometry();
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());

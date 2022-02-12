@@ -22,7 +22,7 @@ public final class Constants {
         public static final int DRIVE_CAN_LEFT1 = 2;
         public static final int DRIVE_CAN_LEFT2 = 3;
         public static final int DRIVE_CAN_RIGHT1 = 4;
-        public static final int DRIVE_CAN_RIGHT2 = 5;
+        public static final int DRIVE_CAN_RIGHT2 = 5; 
 
         public static final int DRIVE_DIO_ENC_LEFT1 = 7;
         public static final int DRIVE_DIO_ENC_LEFT2 = 6;
