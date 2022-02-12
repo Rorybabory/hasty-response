@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -12,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class IntakeBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;
-  private double speed;
 
   /**
    * Creates a new ExampleCommand.
