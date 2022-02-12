@@ -22,7 +22,7 @@ public final class Constants {
         public static final int DRIVE_CAN_LEFT1 = 2;
         public static final int DRIVE_CAN_LEFT2 = 3;
         public static final int DRIVE_CAN_RIGHT1 = 4;
-        public static final int DRIVE_CAN_RIGHT2 = 5;
+        public static final int DRIVE_CAN_RIGHT2 = 5; 
 
         public static final int DRIVE_DIO_ENC_LEFT1 = 7;
         public static final int DRIVE_DIO_ENC_LEFT2 = 6;
@@ -36,7 +36,6 @@ public final class Constants {
         public static final int BUTTON_SHOOT_FLYWHEEL = 5;
         public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
         public static final int BUTTON_RESET_NAVX = 3;
-        public static final int BUTTON_DOOR = 4;
         public static final int BUTTON_HANGER_UP = 1;
         public static final int BUTTON_HANGER_DOWN = 2;
         public static final int BUTTON_INTAKE_EXTEND = 4;
@@ -49,8 +48,13 @@ public final class Constants {
         public static final int SOLENOID_PCM_2 = 1; //In
     }
     public static final class Hanger {
-        public static final int HANGER_CAN = 8;
-        public static final int HANGER_2_CAN = 9;
+        public static final int HANGER_CAN = 9;
+        public static final int HANGER_CAN_2 = 8;
+    }
+    public static final class Shooter {
+        public static final double SHOOTER_SPEED = 0.43;
+        public static final int SHOOTER_PWM_0 = 0;
+        public static final int SHOOTER_PWM_1 = 1;
     }
     public static final class Intake {
         public static final int INTAKE_TALON_PWM = 0;

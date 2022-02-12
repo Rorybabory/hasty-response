@@ -1,11 +1,7 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,8 +12,8 @@ public class Shooter extends SubsystemBase {
  private MotorController flyWheel;
  private MotorController flyWheel2;
   public Shooter() {
-    flyWheel = new Talon(0);
-    flyWheel2 = new Talon(1);
+    flyWheel = new Talon(Constants.Shooter.SHOOTER_PWM_0);
+    flyWheel2 = new Talon(Constants.Shooter.SHOOTER_PWM_1);
   }
 
   @Override

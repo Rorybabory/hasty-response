@@ -5,7 +5,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -14,7 +13,7 @@ public class Hanger extends SubsystemBase {
  private MotorController motor2;
   public Hanger() {
       motor1 = new CANSparkMax(Constants.Hanger.HANGER_CAN,MotorType.kBrushless);
-      motor2 = new CANSparkMax(Constants.Hanger.HANGER_2_CAN,MotorType.kBrushless);
+      motor2 = new CANSparkMax(Constants.Hanger.HANGER_CAN_2,MotorType.kBrushless);
   }
 
   @Override
