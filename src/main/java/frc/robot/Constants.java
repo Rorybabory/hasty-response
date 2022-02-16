@@ -66,6 +66,6 @@ public final class Constants {
         public static final int INTAKE_SPARK_CAN = 7;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_SPEED = .5;
+        public static final double INTAKE_SPEED = .3;
     }
 }
