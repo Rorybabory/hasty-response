@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoFWD;
 import frc.robot.commands.Drive;
 import frc.robot.commands.HangMove;
+import frc.robot.commands.HangerHook;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
@@ -39,11 +40,10 @@ public class RobotContainer {
   private final JoystickButton b_intakeExtend;
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
-
-
-
   private final JoystickButton b_hanger_up;
   private final JoystickButton b_hanger_down;
+  private final JoystickButton b_hanger_open;
+  private final JoystickButton b_hanger_closed;
   private final Hanger flyWheel = new Hanger();
   private final JoystickButton b_resetNAVX;
   private final JoystickButton b_runShooter;
@@ -58,6 +58,8 @@ public class RobotContainer {
     b_intakeExtend = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND);
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
+    b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
+    b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSED);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -79,6 +81,8 @@ public class RobotContainer {
     b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
     b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
+    b_hanger_open.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_OPEN));
+    b_hanger_closed.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
 
 
   }
