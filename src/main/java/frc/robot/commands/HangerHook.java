@@ -4,25 +4,24 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Door;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Hanger;
 
 /** An example command that uses an example subsystem. */
-public class MoveDoor extends CommandBase {
+public class HangerHook extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Door m_door;
-  boolean open = false;
+  private final Hanger m_hanger;
+  private double position;
+
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public MoveDoor(Door subsystem, boolean o) {
-    open = o;
-    m_door = subsystem;
+  public HangerHook(Hanger subsystem, double pos) {
+    m_hanger = subsystem;
+    position = pos;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -32,18 +31,13 @@ public class MoveDoor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("move door");
-    if (open) {
-      m_door.openDoor();
-    }else {
-      m_door.closeDoor();
-    }
+    m_hanger.moveServo(position);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_door.disableDoor();
+    m_hanger.disableServo();
   }
 
   // Returns true when the command should end.

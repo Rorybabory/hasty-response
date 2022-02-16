@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 
-import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Shooter;
 
 // Copyright (c) FIRST and other WPILib contributors.
@@ -10,7 +9,6 @@ import frc.robot.subsystems.Shooter;
 
 
 
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */

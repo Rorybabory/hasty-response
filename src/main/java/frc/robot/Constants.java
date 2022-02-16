@@ -40,6 +40,10 @@ public final class Constants {
         public static final int BUTTON_INTAKE_EXTEND = 4;
         public static final int BUTTON_INTAKE_RETRACT = 3;
         public static final int BUTTON_INTAKE_ROLLER = 2;
+        public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
+        public static final int BUTTON_RESET_NAVX = 3;
+        public static final int BUTTON_HANGER_OPEN = 10;
+        public static final int BUTTON_HANGER_CLOSED = 11;
         
     }
     public static final class Pneumatics{
@@ -49,6 +53,9 @@ public final class Constants {
     public static final class Hanger {
         public static final int HANGER_CAN = 9;
         public static final int HANGER_CAN_2 = 8;
+        public static final int HANGER_SERVO_PWM = 3;
+        public static final double HANGER_SERVO_POS_OPEN = 0;
+        public static final double HANGER_SERVO_POS_CLOSED = 180;
     }
     public static final class Shooter {
         public static final double SHOOTER_SPEED = 0.43;
