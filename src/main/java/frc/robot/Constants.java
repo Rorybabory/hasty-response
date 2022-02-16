@@ -33,15 +33,13 @@ public final class Constants {
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
-        public static final int BUTTON_SHOOT_FLYWHEEL = 5;
-        public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
-        public static final int BUTTON_RESET_NAVX = 3;
+        public static final int BUTTON_SHOOT_FLYWHEEL = 1;
         public static final int BUTTON_DOOR = 4;
-        public static final int BUTTON_HANGER_UP = 1;
-        public static final int BUTTON_HANGER_DOWN = 2;
+        public static final int BUTTON_HANGER_UP = 12;
+        public static final int BUTTON_HANGER_DOWN = 11;
         public static final int BUTTON_INTAKE_EXTEND = 4;
         public static final int BUTTON_INTAKE_RETRACT = 3;
-        public static final int BUTTON_INTAKE_ROLLER = 9;
+        public static final int BUTTON_INTAKE_ROLLER = 2;
         
     }
     public static final class Pneumatics{
@@ -58,10 +56,9 @@ public final class Constants {
         public static final int SHOOTER_PWM_1 = 1;
     }
     public static final class Intake {
-        public static final int INTAKE_TALON_PWM = 0;
+        public static final int INTAKE_SPARK_CAN = 7;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
         public static final double INTAKE_SPEED = .5;
-
     }
 }
