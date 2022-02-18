@@ -14,6 +14,7 @@ import frc.robot.commands.HangerHook;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
+import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
 
 import frc.robot.subsystems.DriveTrain;
@@ -21,7 +22,6 @@ import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -45,16 +45,12 @@ public class RobotContainer {
   private final JoystickButton b_hanger_open;
   private final JoystickButton b_hanger_closed;
   private final Hanger flyWheel = new Hanger();
-  private final JoystickButton b_resetNAVX;
   private final JoystickButton b_runShooter;
-  private final JoystickButton b_runShooter_2;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    b_resetNAVX = new JoystickButton(j_joystick, Constants.Controls.BUTTON_RESET_NAVX);
     b_hanger_up = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP);
     b_hanger_down = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_DOWN);
     b_runShooter = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL);
-    b_runShooter_2 = new JoystickButton(j_joystick, Constants.Controls.BUTTON_SHOOT_FLYWHEEL_2);
     b_intakeExtend = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND);
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
@@ -72,12 +68,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    b_resetNAVX.whileHeld(new RunCommand(() -> m_driveTrain.NAVX.zeroYaw(),m_driveTrain));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
+    m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
     b_hanger_up.whileHeld(new HangMove(flyWheel, 0.35));
     b_hanger_down.whileHeld(new HangMove(flyWheel, -0.8));
     b_runShooter.whileHeld(new Shoot(m_shooter, Constants.Shooter.SHOOTER_SPEED));
-    b_runShooter_2.whileHeld(new Shoot(m_shooter, -Constants.Shooter.SHOOTER_SPEED));
     b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
     b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
