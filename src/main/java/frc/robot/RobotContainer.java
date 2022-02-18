@@ -14,6 +14,7 @@ import frc.robot.commands.HangerHook;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
+import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
 
 import frc.robot.subsystems.DriveTrain;
@@ -68,6 +69,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
+    m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
     b_hanger_up.whileHeld(new HangMove(flyWheel, 0.35));
     b_hanger_down.whileHeld(new HangMove(flyWheel, -0.8));
     b_runShooter.whileHeld(new Shoot(m_shooter, Constants.Shooter.SHOOTER_SPEED));
