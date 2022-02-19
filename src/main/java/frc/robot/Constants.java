@@ -61,7 +61,7 @@ public final class Constants {
         public static final double SHOOTER_SPEED = 0.43;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
-        public static final int SERVO_PWM = 2;
+        public static final int SERVO_PWM = 3;
     }
     public static final class Intake {
         public static final int INTAKE_SPARK_CAN = 7;
@@ -70,7 +70,7 @@ public final class Constants {
         public static final double INTAKE_SPEED = .3;
     }
     public static final class BTS {
-        public static final int BTS_ROLLER_PWM = 4;
+        public static final int BTS_ROLLER_PWM = 2;
         public static final double BTS_SPEED = 0.5;
     }
 }
