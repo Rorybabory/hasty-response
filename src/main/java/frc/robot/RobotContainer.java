@@ -38,6 +38,7 @@ public class RobotContainer {
   private final Shooter m_shooter = new Shooter();
   private final Intake m_intake = new Intake();
   private final BTS m_bts = new BTS();
+  private final Hanger m_hanger = new Hanger();
 
   private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
 
@@ -49,7 +50,6 @@ public class RobotContainer {
   private final JoystickButton b_hanger_open;
   private final JoystickButton b_hanger_closed;
   private final JoystickButton b_runBTS;
-  private final Hanger flyWheel = new Hanger();
   private final JoystickButton b_runShooter;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -75,14 +75,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
-    b_hanger_up.whileHeld(new HangMove(flyWheel, 0.35));
-    b_hanger_down.whileHeld(new HangMove(flyWheel, -0.8));
+    b_hanger_up.whileHeld(new HangMove(m_hanger, 0.35));
+    b_hanger_down.whileHeld(new HangMove(m_hanger, -0.8));
     b_runShooter.whileHeld(new Shoot(m_shooter, Constants.Shooter.SHOOTER_SPEED));
     b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
     b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
-    b_hanger_open.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_OPEN));
-    b_hanger_closed.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
+    b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
+    b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
     b_runBTS.whileHeld(new RunBTS(m_bts));
 
   }
