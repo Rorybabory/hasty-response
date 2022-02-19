@@ -14,9 +14,10 @@ import frc.robot.commands.HangerHook;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
+import frc.robot.commands.RunBTS;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
-
+import frc.robot.subsystems.BTS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Intake;
@@ -35,8 +36,11 @@ public class RobotContainer {
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
   private final DriveTrain m_driveTrain = new DriveTrain(true);
   private final Shooter m_shooter = new Shooter();
-  private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
   private final Intake m_intake = new Intake();
+  private final BTS m_bts = new BTS();
+
+  private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
+
   private final JoystickButton b_intakeExtend;
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
@@ -44,6 +48,7 @@ public class RobotContainer {
   private final JoystickButton b_hanger_down;
   private final JoystickButton b_hanger_open;
   private final JoystickButton b_hanger_closed;
+  private final JoystickButton b_runBTS;
   private final Hanger flyWheel = new Hanger();
   private final JoystickButton b_runShooter;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -56,7 +61,7 @@ public class RobotContainer {
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
     b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSED);
-
+    b_runBTS = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -78,7 +83,7 @@ public class RobotContainer {
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
     b_hanger_open.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     b_hanger_closed.whenPressed(new HangerHook(flyWheel, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
-
+    b_runBTS.whileHeld(new RunBTS(m_bts));
 
   }
 

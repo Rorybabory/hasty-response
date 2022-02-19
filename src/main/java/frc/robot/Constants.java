@@ -44,7 +44,7 @@ public final class Constants {
         public static final int BUTTON_RESET_NAVX = 3;
         public static final int BUTTON_HANGER_OPEN = 10;
         public static final int BUTTON_HANGER_CLOSED = 11;
-        
+        public static final int BUTTON_BTS_ROLLER = 9;
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
@@ -68,5 +68,9 @@ public final class Constants {
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
         public static final double INTAKE_SPEED = .3;
+    }
+    public static final class BTS {
+        public static final int BTS_ROLLER_PWM = 4;
+        public static final double BTS_SPEED = 0.5;
     }
 }
