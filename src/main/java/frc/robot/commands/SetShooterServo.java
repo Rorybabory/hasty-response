@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -38,9 +37,7 @@ public class SetShooterServo extends CommandBase {
     value*=0.93;
     value+=0.17;
     m_shooter.setServoPosition(value);
-    if (value > 0.1 || value < -0.1) {
-      System.out.println("servo pos is " + value);
-    }
+    System.out.println("servo pos is " + value);
   }
 
   // Called once the command ends or is interrupted.
