@@ -37,11 +37,11 @@ public final class Constants {
         public static final int BUTTON_INTAKE_ROLLER = 2;
         public static final int BUTTON_INTAKE_RETRACT = 3;
         public static final int BUTTON_INTAKE_EXTEND = 4;
-        public static final int BUTTON_SHOOT_FLYWHEEL_2 = 6;
-        public static final int BUTTON_HANGER_CLOSED = 8;
-        public static final int BUTTON_HANGER_OPEN = 9;
-        public static final int BUTTON_HANGER_DOWN = 10;
-        public static final int BUTTON_HANGER_UP = 11;
+        public static final int BUTTON_HANGER_DOWN = 7;
+        public static final int BUTTON_HANGER_UP = 8;
+        public static final int BUTTON_HANGER_CLOSE = 9;
+        public static final int BUTTON_HANGER_OPEN = 10;
+        public static final int BUTTON_BTS_ROLLER_REV = 11;
         public static final int BUTTON_BTS_ROLLER = 12;
 
     }
