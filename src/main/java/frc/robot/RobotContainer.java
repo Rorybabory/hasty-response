@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
-  private final DriveTrain m_driveTrain = new DriveTrain(true);
+  private final DriveTrain m_driveTrain = new DriveTrain();
   private final Shooter m_shooter = new Shooter();
   private final Intake m_intake = new Intake();
   private final BTS m_bts = new BTS();
@@ -50,6 +50,7 @@ public class RobotContainer {
   private final JoystickButton b_hanger_open;
   private final JoystickButton b_hanger_closed;
   private final JoystickButton b_runBTS;
+  private final JoystickButton b_runBTS_rev;
   private final JoystickButton b_runShooter;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -60,8 +61,9 @@ public class RobotContainer {
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
     b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
-    b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSED);
+    b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
     b_runBTS = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER);
+    b_runBTS_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER_REV);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -83,7 +85,8 @@ public class RobotContainer {
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));
     b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
-    b_runBTS.whileHeld(new RunBTS(m_bts));
+    b_runBTS.whileHeld(new RunBTS(m_bts, Constants.BTS.BTS_SPEED));
+    b_runBTS_rev.whileHeld(new RunBTS(m_bts, -Constants.BTS.BTS_SPEED));
 
   }
 
