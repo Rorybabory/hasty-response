@@ -12,11 +12,11 @@ import frc.robot.Constants;
 public class Hanger extends SubsystemBase {
  private MotorController motor1;
  private MotorController motor2;
- private Servo hookServo;
+ //private Servo hookServo;
   public Hanger() {
       motor1 = new CANSparkMax(Constants.Hanger.HANGER_CAN,MotorType.kBrushless);
       motor2 = new CANSparkMax(Constants.Hanger.HANGER_CAN_2,MotorType.kBrushless);
-      hookServo = new Servo(Constants.Hanger.HANGER_SERVO_PWM);
+      //hookServo = new Servo(Constants.Hanger.HANGER_SERVO_PWM);
       
   }
 
@@ -29,10 +29,10 @@ public class Hanger extends SubsystemBase {
   }
 
   public void moveServo(double pos){
-    hookServo.setPosition(pos);
+    //hookServo.setPosition(pos);
   }
   public void disableServo(){
-    hookServo.setDisabled();
+    //hookServo.setDisabled();
   }
   public void shoot(double speed){
       motor1.set(speed);
