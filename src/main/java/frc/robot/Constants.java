@@ -64,6 +64,7 @@ public final class Constants {
     }
     public static final class Intake {
         public static final int INTAKE_SPARK_CAN = 7;
+        public static final int INTAKE_DOG_HOUSE_PWM = 4;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
         public static final double INTAKE_SPEED = .3;
