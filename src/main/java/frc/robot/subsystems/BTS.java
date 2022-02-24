@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class BTS extends SubsystemBase { //Ball Transfer System (BTS)
-    MotorController rollerMotor;
+    MotorController mc_elevator;
     public BTS() {
-        rollerMotor = new VictorSP(Constants.BTS.BTS_ROLLER_PWM);
+        mc_elevator = new VictorSP(Constants.BTS.BTS_ROLLER_PWM);
     }
     public void setRoller(double speed) {
-        rollerMotor.set(speed);
+        mc_elevator.set(speed);
     }
     @Override
     public void periodic() {
