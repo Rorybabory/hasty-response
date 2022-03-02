@@ -41,8 +41,8 @@ public final class Constants {
         public static final int BUTTON_HANGER_UP = 8;
         public static final int BUTTON_HANGER_CLOSE = 9;
         public static final int BUTTON_HANGER_OPEN = 10;
-        public static final int BUTTON_BTS_ROLLER_REV = 11;
-        public static final int BUTTON_BTS_ROLLER = 12;
+        public static final int BUTTON_BTS_ROLLER_REV = 5;
+        public static final int BUTTON_BTS_ROLLER = 6;
 
     }
     public static final class Pneumatics{
@@ -52,7 +52,7 @@ public final class Constants {
     public static final class Hanger {
         public static final int HANGER_CAN = 9;
         public static final int HANGER_CAN_2 = 8;
-        public static final int HANGER_SERVO_PWM = 3;
+        public static final int HANGER_SERVO_PWM = 4;
         public static final double HANGER_SERVO_POS_OPEN = 0;
         public static final double HANGER_SERVO_POS_CLOSED = 180;
     }
@@ -60,7 +60,7 @@ public final class Constants {
         public static final double SHOOTER_SPEED = 0.43;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
-        public static final int SERVO_PWM = 3;
+        public static final int SERVO_PWM = 2;
     }
     public static final class Intake {
         public static final int INTAKE_SPARK_CAN = 7;
@@ -69,7 +69,7 @@ public final class Constants {
         public static final double INTAKE_SPEED = .3;
     }
     public static final class BTS {
-        public static final int BTS_ROLLER_PWM = 2;
+        public static final int BTS_ROLLER_PWM = 3;
         public static final double BTS_SPEED = 0.5;
     }
 }

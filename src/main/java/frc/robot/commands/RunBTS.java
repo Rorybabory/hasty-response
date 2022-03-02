@@ -6,11 +6,12 @@ import frc.robot.subsystems.BTS;
 
 public class RunBTS extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final BTS m_bts;
+    private BTS m_bts;
     private double speed;
+    
     public RunBTS(BTS subsystem, double sp) {
       m_bts = subsystem;
-      sp = speed;
+      speed = sp;
       // Use addRequirements() here to declare subsystem dependencies.
       addRequirements(subsystem);
     }
@@ -22,7 +23,8 @@ public class RunBTS extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_bts.setRoller(speed);
+      System.out.println("run bts elevator");
+      m_bts.setRoller(speed);
     }
   
     // Called once the command ends or is interrupted.

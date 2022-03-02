@@ -13,10 +13,10 @@ public class Shooter extends SubsystemBase {
   private MotorController flyWheel;
   private MotorController flyWheel2;
 
-  private Servo servo;
+ // private Servo servo;
   
   public Shooter() {
-    servo = new Servo(Constants.Shooter.SERVO_PWM);
+   // servo = new Servo(Constants.Shooter.SERVO_PWM);
     flyWheel = new Talon(Constants.Shooter.SHOOTER_PWM_0);
     flyWheel2 = new Talon(Constants.Shooter.SHOOTER_PWM_1);
   }
@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   public void setServoPosition(double value) { //value is 0 to 1
-    servo.set(value);
+    //servo.set(value);
   }
   public void shoot(double speed){
       flyWheel.set(speed);
