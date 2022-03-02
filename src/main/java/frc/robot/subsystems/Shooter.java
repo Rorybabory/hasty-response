@@ -10,15 +10,15 @@ import edu.wpi.first.wpilibj.motorcontrol.Talon;
 
 
 public class Shooter extends SubsystemBase {
-  private MotorController flyWheel;
-  private MotorController flyWheel2;
+  private MotorController mc_flyWheel;
+  private MotorController mc_flyWheel2;
 
- // private Servo servo;
+  private Servo sv_servo;
   
   public Shooter() {
-   // servo = new Servo(Constants.Shooter.SERVO_PWM);
-    flyWheel = new Talon(Constants.Shooter.SHOOTER_PWM_0);
-    flyWheel2 = new Talon(Constants.Shooter.SHOOTER_PWM_1);
+    sv_servo = new Servo(Constants.Shooter.SERVO_PWM);
+    mc_flyWheel = new Talon(Constants.Shooter.SHOOTER_PWM_0);
+    mc_flyWheel2 = new Talon(Constants.Shooter.SHOOTER_PWM_1);
   }
 
   @Override
@@ -29,14 +29,14 @@ public class Shooter extends SubsystemBase {
     //servo.set(value);
   }
   public void shoot(double speed){
-      flyWheel.set(speed);
-      flyWheel2.set(-speed);
-      System.out.println("shooting");
+    mc_flyWheel.set(speed);
+    mc_flyWheel2.set(-speed);
+    System.out.println("shooting");
   }
 
   public void stopShoot(){
-      flyWheel.set(0);
-      flyWheel2.set(0);
+    mc_flyWheel.set(0);
+    mc_flyWheel2.set(0);
   }
 
   @Override

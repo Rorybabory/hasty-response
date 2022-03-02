@@ -28,8 +28,8 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_LEFT2 = 6;
         public static final int DRIVE_DIO_ENC_RIGHT1 =  9;
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
-        public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 0.0012101341281669;
-        public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 0.0003752310536044362;
+        public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 1.0; //default
+        public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
@@ -64,6 +64,7 @@ public final class Constants {
     }
     public static final class Intake {
         public static final int INTAKE_SPARK_CAN = 7;
+        public static final int INTAKE_DOG_HOUSE_PWM = 4;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
         public static final double INTAKE_SPEED = .3;
