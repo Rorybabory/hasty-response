@@ -30,13 +30,15 @@ public class Intake extends SubsystemBase{
     }
     public void enableMotor(){
         mc_roller.set(Constants.Intake.INTAKE_SPEED);
-        mc_doghouse.set(Constants.Intake.INTAKE_SPEED);
+        mc_doghouse.set(-Constants.Intake.INTAKE_SPEED);
         System.out.println("running mc roller");
     }
     public void disableMotor(){
         mc_roller.disable();
+        mc_doghouse.disable();
     }
     public void disablePneumatics(){
         ds_extender.set(Value.kOff);
     }
+    
 }

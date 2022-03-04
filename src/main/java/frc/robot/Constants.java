@@ -41,6 +41,7 @@ public final class Constants {
         public static final int BUTTON_HANGER_UP = 8;
         public static final int BUTTON_HANGER_CLOSE = 9;
         public static final int BUTTON_HANGER_OPEN = 10;
+        public static final int BUTTON_INTAKE_TO_SHOOT = 11;
         public static final int BUTTON_BTS_ROLLER_REV = 5;
         public static final int BUTTON_BTS_ROLLER = 6;
 
@@ -57,20 +58,20 @@ public final class Constants {
         public static final double HANGER_SERVO_POS_CLOSED = 180;
     }
     public static final class Shooter {
-        public static final double SHOOTER_SPEED = 0.43;
+        public static final double SHOOTER_SPEED = 0.667;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
-        public static final int SERVO_PWM = 2;
+        public static final int SERVO_PWM = 4;
     }
     public static final class Intake {
         public static final int INTAKE_SPARK_CAN = 7;
-        public static final int INTAKE_DOG_HOUSE_PWM = 4;
+        public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_SPEED = .3;
+        public static final double INTAKE_SPEED = .8;
     }
     public static final class BTS {
         public static final int BTS_ROLLER_PWM = 3;
-        public static final double BTS_SPEED = 0.5;
+        public static final double BTS_SPEED = 0.75;
     }
 }
