@@ -59,10 +59,10 @@ public class DriveTrain extends SubsystemBase
       System.out.println("running arcade drive");
     }
     double getEncoderLeft() {
-      return (sp_left1.getEncoder().getPosition() + sp_left2.getEncoder().getPosition())/2;
+      return (sp_left1.getEncoder().getPosition() + sp_left2.getEncoder().getPosition())/2.0;
     }
     double getEncoderRight() {
-      return (sp_right1.getEncoder().getPosition() + sp_right2.getEncoder().getPosition())/2;
+      return (sp_right1.getEncoder().getPosition() + sp_right2.getEncoder().getPosition())/2.0;
     }
 
     @Override
@@ -74,7 +74,5 @@ public class DriveTrain extends SubsystemBase
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
     }
-    public double getMatchTime(){
-      return DriverStation.getMatchTime(); 
-    }
+    
 }
