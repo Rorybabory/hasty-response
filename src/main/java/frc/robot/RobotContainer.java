@@ -16,6 +16,7 @@ import frc.robot.commands.HangerHook;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
+import frc.robot.commands.IntakeToShoot;
 import frc.robot.commands.RunBTS;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
@@ -52,6 +53,7 @@ public class RobotContainer {
   private final JoystickButton b_runBTS;
   private final JoystickButton b_runBTS_rev;
   private final JoystickButton b_runShooter;
+  private final JoystickButton b_intakeToShoot;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     b_hanger_up = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP);
@@ -64,6 +66,7 @@ public class RobotContainer {
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
     b_runBTS = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER);
     b_runBTS_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER_REV);
+    b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -87,7 +90,7 @@ public class RobotContainer {
     b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
     b_runBTS.whileHeld(new RunBTS(m_bts, Constants.BTS.BTS_SPEED));
     b_runBTS_rev.whileHeld(new RunBTS(m_bts, -Constants.BTS.BTS_SPEED));
-
+    //b_intakeToShoot.whileHeld(new IntakeToShoot(m_intake, m_bts));
   }
 
   /**
