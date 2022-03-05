@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoFWD;
 import frc.robot.commands.Drive;
@@ -20,10 +21,12 @@ import frc.robot.commands.IntakeToShoot;
 import frc.robot.commands.RunBTS;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.setRingLight;
 import frc.robot.subsystems.BTS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lighting;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -40,7 +43,7 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
   private final BTS m_bts = new BTS();
   private final Hanger m_hanger = new Hanger();
-
+  private final Lighting m_lights = new Lighting();
   private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
 
   private final JoystickButton b_intakeExtend;
@@ -78,6 +81,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    m_lights.setDefaultCommand(new setRingLight(m_lights, true));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
     b_hanger_up.whileHeld(new HangMove(m_hanger, 0.35));
