@@ -32,7 +32,7 @@ public final class Constants {
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
     }
     public static final class Lighting {
-        public static final int RING_DIO = 0;
+        public static final int RING_DIO = 2;
     }
     public static final class Controls {
         public static final int JOYSTICK_USB = 0;
@@ -71,7 +71,7 @@ public final class Constants {
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_SPEED = .8;
+        public static final double INTAKE_SPEED = .5;
     }
     public static final class BTS {
         public static final int BTS_ROLLER_PWM = 3;
