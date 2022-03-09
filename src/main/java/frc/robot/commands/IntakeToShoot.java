@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.BTS;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
 
 public class IntakeToShoot extends CommandBase {
   private final Intake m_intake;
