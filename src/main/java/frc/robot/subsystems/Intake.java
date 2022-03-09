@@ -1,8 +1,5 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -16,7 +13,7 @@ public class Intake extends SubsystemBase{
     private MotorController mc_doghouse;
     private DoubleSolenoid ds_extender;
     public Intake(){
-        mc_roller = new CANSparkMax(Constants.Intake.INTAKE_SPARK_CAN, MotorType.kBrushless);
+        mc_roller = new VictorSP(Constants.Intake.INTAKE_ROLLER_PWM);
         mc_doghouse = new VictorSP(Constants.Intake.INTAKE_DOG_HOUSE_PWM);
         ds_extender = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Intake.INTAKE_SOLENOID_PCM, Constants.Intake.INTAKE_SOLENOID_PCM_2);
     }

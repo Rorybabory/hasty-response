@@ -67,7 +67,7 @@ public final class Constants {
         public static final int SERVO_PWM = 4;
     }
     public static final class Intake {
-        public static final int INTAKE_SPARK_CAN = 7;
+        public static final int INTAKE_ROLLER_PWM = 4;
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
