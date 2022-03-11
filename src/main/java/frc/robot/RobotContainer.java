@@ -86,7 +86,7 @@ public class RobotContainer {
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
     b_hanger_up.whileHeld(new HangMove(m_hanger, 0.35));
     b_hanger_down.whileHeld(new HangMove(m_hanger, -0.8));
-    b_runShooter.whileHeld(new Shoot(m_shooter, Constants.Shooter.SHOOTER_SPEED));
+    b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts, Constants.Shooter.SHOOTER_SPEED));
     b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
     b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake));

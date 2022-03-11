@@ -25,9 +25,15 @@ public class Intake extends SubsystemBase{
     {
         ds_extender.set(Value.kReverse);
     }
+    public void enableDoghouse() {
+        mc_doghouse.set(Constants.Intake.INTAKE_DOGHOUSE_SPEED);
+    }
+    public void disableDoghouse() {
+        mc_doghouse.disable();
+    }
     public void enableMotor(){
-        mc_roller.set(Constants.Intake.INTAKE_SPEED);
-        mc_doghouse.set(-Constants.Intake.INTAKE_SPEED);
+        mc_roller.set(Constants.Intake.INTAKE_ROLLER_SPEED);
+        mc_doghouse.set(Constants.Intake.INTAKE_DOGHOUSE_SPEED);
         System.out.println("running mc roller");
     }
     public void disableMotor(){

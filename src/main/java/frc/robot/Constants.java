@@ -56,7 +56,7 @@ public final class Constants {
     public static final class Hanger {
         public static final int HANGER_CAN = 9;
         public static final int HANGER_CAN_2 = 8;
-        public static final int HANGER_SERVO_PWM = 4;
+        public static final int HANGER_SERVO_PWM = 8;
         public static final double HANGER_SERVO_POS_OPEN = 0;
         public static final double HANGER_SERVO_POS_CLOSED = 180;
     }
@@ -64,17 +64,20 @@ public final class Constants {
         public static final double SHOOTER_SPEED = 0.667;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
-        public static final int SERVO_PWM = 4;
+        public static final int SERVO_PWM = 7;
     }
     public static final class Intake {
         public static final int INTAKE_ROLLER_PWM = 4;
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_SPEED = .5;
+        public static final double INTAKE_ROLLER_SPEED = -0.9;
+        public static final double INTAKE_DOGHOUSE_SPEED = -.5;
+
+        
     }
     public static final class BTS {
         public static final int BTS_ROLLER_PWM = 3;
-        public static final double BTS_SPEED = 0.75;
+        public static final double BTS_SPEED = 1.0;
     }
 }

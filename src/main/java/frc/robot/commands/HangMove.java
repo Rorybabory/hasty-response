@@ -15,11 +15,12 @@ public class HangMove extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Hanger s;
   private double speed;
-
+  boolean stop; //artificially stops once it reaches top.
  
   public HangMove(Hanger subsystem, double sp) {
     s = subsystem;
     speed = sp;
+    stop = false;
     addRequirements(subsystem);
   }
 
@@ -34,6 +35,9 @@ public class HangMove extends CommandBase {
   public void execute() {
     System.out.println("hanger move");
     s.shoot(speed);
+    if (speed > 0) { //if going up
+      s.
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -45,7 +49,7 @@ public class HangMove extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return stop;
   }
 }
 
