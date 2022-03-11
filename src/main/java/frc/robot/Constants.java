@@ -68,6 +68,8 @@ public final class Constants {
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
         public static final int SERVO_PWM = 7;
+        public static final int SERVO_PWM_2 = 8;
+
     }
     public static final class Intake {
         public static final int INTAKE_ROLLER_PWM = 4;

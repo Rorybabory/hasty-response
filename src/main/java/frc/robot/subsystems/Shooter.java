@@ -11,9 +11,12 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
   private PWMTalonFX mc_flyWheel;
   private PWMTalonFX mc_flyWheel2;
-  private Servo sv_servo;
+  private Servo sv_servo_l;
+  private Servo sv_servo_r;
   public Shooter() {
-    sv_servo = new Servo(Constants.Shooter.SERVO_PWM);
+    sv_servo_l = new Servo(Constants.Shooter.SERVO_PWM);
+    sv_servo_r = new Servo(Constants.Shooter.SERVO_PWM_2);
+
     mc_flyWheel = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_0);
     mc_flyWheel2 = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_1);
   }
@@ -23,7 +26,9 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   public void setServoPosition(double value) { //value is 0 to 1
-    //servo.set(value);
+    sv_servo_l.set(value);
+    sv_servo_r.set(value);
+
   }
   public void shoot(double speed){
     mc_flyWheel.set(speed);
