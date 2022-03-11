@@ -59,6 +59,9 @@ public final class Constants {
         public static final int HANGER_SERVO_PWM = 8;
         public static final double HANGER_SERVO_POS_OPEN = 0;
         public static final double HANGER_SERVO_POS_CLOSED = 180;
+
+        public static final double HANGER_TOP = -40.0;
+        public static final double HANGER_BOTTOM = 0.2;
     }
     public static final class Shooter {
         public static final double SHOOTER_SPEED = 0.667;

@@ -26,8 +26,9 @@ public class Hanger extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("hanger motor 1 encoder value", mc_motor1.getEncoder().getPosition());
+    SmartDashboard.putNumber("hanger motor 1 encoder value", getEncoder());
   }
+
   public double getEncoder() {
     return mc_motor1.getEncoder().getPosition();
   }

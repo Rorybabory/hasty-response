@@ -8,6 +8,7 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Hanger;
 
 /** An example command that uses an example subsystem. */
@@ -35,13 +36,13 @@ public class HangMove extends CommandBase {
   public void execute() {
     s.move(speed);
     if (speed > 0) { //if going up
-      if (s.getEncoder() < -40.0) {
+      if (s.getEncoder() < Constants.Hanger.HANGER_TOP) {
         stop = true;
         System.out.println("hanger stop");
         s.stopMove();
       }
     }else if (speed < 0) { // if going down
-      if (s.getEncoder() > 0.1) {
+      if (s.getEncoder() > Constants.Hanger.HANGER_BOTTOM) {
         stop = true;
         System.out.println("hanger stop");
         s.stopMove();
