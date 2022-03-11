@@ -37,12 +37,12 @@ public class Hanger extends SubsystemBase {
   public void disableServo(){
     //hookServo.setDisabled();
   }
-  public void shoot(double speed){
+  public void move(double speed){
     mc_motor1.set(speed);
     mc_motor2.set(-speed);
   }
 
-  public void stopShoot(){
+  public void stopMove(){
     mc_motor1.set(0);
     mc_motor2.set(0);
   }
