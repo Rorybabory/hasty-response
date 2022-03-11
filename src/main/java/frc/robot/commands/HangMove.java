@@ -36,7 +36,13 @@ public class HangMove extends CommandBase {
     System.out.println("hanger move");
     s.shoot(speed);
     if (speed > 0) { //if going up
-      s.
+      if (s.getEncoder() < -40.0) {
+        stop = true;
+      }
+    }else if (speed < 0) {
+      if (s.getEncoder() > 0.1) {
+        stop = true;
+      }
     }
   }
 
