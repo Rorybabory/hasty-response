@@ -35,19 +35,19 @@ public class HangMove extends CommandBase {
   @Override
   public void execute() {
     s.move(speed);
-    if (speed > 0) { //if going up
-      if (s.getEncoder() < Constants.Hanger.HANGER_TOP) {
-        stop = true;
-        System.out.println("hanger stop");
-        s.stopMove();
-      }
-    }else if (speed < 0) { // if going down
-      if (s.getEncoder() > Constants.Hanger.HANGER_BOTTOM) {
-        stop = true;
-        System.out.println("hanger stop");
-        s.stopMove();
-      }
-    }
+    // if (speed > 0) { //if going up
+    //   if (s.getEncoder() < Constants.Hanger.HANGER_TOP) {
+    //     stop = true;
+    //     System.out.println("hanger stop");
+    //     s.stopMove();
+    //   }
+    // }else if (speed < 0) { // if going down
+    //   if (s.getEncoder() > Constants.Hanger.HANGER_BOTTOM) {
+    //     stop = true;
+    //     System.out.println("hanger stop");
+    //     s.stopMove();
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.

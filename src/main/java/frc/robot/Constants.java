@@ -76,8 +76,8 @@ public final class Constants {
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_ROLLER_SPEED = -0.9;
-        public static final double INTAKE_DOGHOUSE_SPEED = -.5;
+        public static final double INTAKE_ROLLER_SPEED = -1.0;
+        public static final double INTAKE_DOGHOUSE_SPEED = -1.0;
 
         
     }
