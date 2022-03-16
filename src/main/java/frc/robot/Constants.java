@@ -54,8 +54,12 @@ public final class Constants {
         public static final int SOLENOID_PCM_2 = 1; //In
     }
     public static final class Hanger {
-        public static final int HANGER_CAN = 9;
-        public static final int HANGER_CAN_2 = 8;
+        public static final int SOLINOID_1_1 = 2;
+        public static final int SOLINOID_1_2 = 3;
+
+        public static final int SOLINOID_2_1 = 4;
+        public static final int SOLINOID_2_2 = 5;
+
         public static final int HANGER_SERVO_PWM = 8;
         public static final double HANGER_SERVO_POS_OPEN = 0;
         public static final double HANGER_SERVO_POS_CLOSED = 180;
