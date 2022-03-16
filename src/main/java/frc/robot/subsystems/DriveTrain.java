@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 
 
 public class DriveTrain extends SubsystemBase
@@ -28,7 +29,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     // private Encoder enc_Left, enc_Right;
-    public AHRS NAVX = new AHRS(SPI.Port.kMXP);
+    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
     boolean isSpark = false;
     
