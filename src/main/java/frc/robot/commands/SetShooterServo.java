@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -36,6 +37,7 @@ public class SetShooterServo extends CommandBase {
     value = (value+1.0)/2.0;
     // value*=0.93;
     // value+=0.17;
+    SmartDashboard.putNumber("Servo Value", value);
     m_shooter.setServoPosition(value);
     System.out.println("servo pos is " + value);
   }

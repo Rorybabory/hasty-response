@@ -31,6 +31,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Target Distance", getDistance());
+    SmartDashboard.putNumber("Target Y", getTY());
     // This method will be called once per scheduler run
   }
   public void setServoPosition(double value) { //value is 0 to 1
@@ -51,9 +52,15 @@ public class Shooter extends SubsystemBase {
   public void getEncoderDifference(){
     
   }
-  public double getDistance() {
+  public double getTY() {
     NetworkTableEntry ty = nt_table.getEntry("ty");
-    double targetOffsetAngle_Vertical = ty.getDouble(0.0);
+    if (!ty.exists()) {
+      System.out.println("ERROR: INVALID NETWORK TABLE ENTRY TY");
+    }
+    return ty.getDouble(10.0);
+  }
+  public double getDistance() {
+    double targetOffsetAngle_Vertical = getTY();
 
     double angleToGoalDegrees = Constants.Vision.VISION_CAMERA_ANGLE + targetOffsetAngle_Vertical;
     double angleToGoalRadians = angleToGoalDegrees * (Math.PI/180.0);
