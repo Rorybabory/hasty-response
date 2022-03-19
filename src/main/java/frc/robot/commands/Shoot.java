@@ -41,12 +41,22 @@ public class Shoot extends CommandBase {
 
   @Override
   public void execute() {
-    if (timer.hasElapsed(1.0)) {
+    if (timer.hasElapsed(1.25)) {
       m_intake.enableDoghouse();
       m_bts.setRoller(Constants.BTS.BTS_SPEED);
     }
     System.out.println("time running command is: " + timer.get());
     System.out.println("shooting");
+    
+    double distance = m_shooter.getDistance(); //inches
+    if (distance < 105) {
+      speed = 0.66;
+      m_shooter.setServoPosition(0.82);
+    }else {
+      speed = 1.0;
+      m_shooter.setServoPosition(0.17);
+    }
+
     m_shooter.shoot(speed);
   }
 
