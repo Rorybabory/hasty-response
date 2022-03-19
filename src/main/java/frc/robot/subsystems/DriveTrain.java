@@ -31,7 +31,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     // private Encoder enc_Left, enc_Right;
-    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB);
+    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB1);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
     boolean isSpark = false;
     
