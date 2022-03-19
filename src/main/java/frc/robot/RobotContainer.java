@@ -50,12 +50,11 @@ public class RobotContainer {
   private final JoystickButton b_intakeExtend;
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
+  private final JoystickButton b_intakeSpin_rev;
   private final JoystickButton b_hanger_up;
   private final JoystickButton b_hanger_down;
   private final JoystickButton b_hanger_open;
   private final JoystickButton b_hanger_closed;
-  private final JoystickButton b_runBTS;
-  private final JoystickButton b_runBTS_rev;
   private final JoystickButton b_runShooter;
   private final JoystickButton b_intakeToShoot;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -69,8 +68,6 @@ public class RobotContainer {
     b_intakeSpin_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV);
     b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
-    b_runBTS = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER);
-    b_runBTS_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER_REV);
     b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
     // Configure the button bindings
     configureButtonBindings();
@@ -95,8 +92,6 @@ public class RobotContainer {
     b_intakeSpin_rev.whileHeld(new IntakeBall(m_intake, true));
     b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
-    b_runBTS.whileHeld(new RunBTS(m_bts, Constants.BTS.BTS_SPEED));
-    b_runBTS_rev.whileHeld(new RunBTS(m_bts, -Constants.BTS.BTS_SPEED));
     //b_intakeToShoot.whileHeld(new IntakeToShoot(m_intake, m_bts));
   }
 

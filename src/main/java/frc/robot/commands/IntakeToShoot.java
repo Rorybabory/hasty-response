@@ -26,7 +26,7 @@ public class IntakeToShoot extends CommandBase {
   public void execute() {
     System.out.println("IntakeToShoot");
     m_bts.setRoller(Constants.BTS.BTS_SPEED);
-    m_intake.enableMotor();
+    m_intake.enableMotor(false);
   }
 
   // Called once the command ends or is interrupted.
