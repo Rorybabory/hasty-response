@@ -4,28 +4,27 @@
 
 package frc.robot.commands;
 
+// import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** An example command that uses an example subsystem. */
-public class SetShooterServo extends CommandBase {
+public class OverrideDistance extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter m_shooter;
-  private Joystick joystick;
+
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SetShooterServo(Shooter subsystem, Joystick stick) {
+  public OverrideDistance(Shooter subsystem) {
     m_shooter = subsystem;
-    joystick = stick;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    //addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -35,16 +34,7 @@ public class SetShooterServo extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double value = joystick.getRawAxis(3);
-    value = (value+1.0)/2.0;
-     value*=0.82-0.17;
-     value+=0.17;
-    System.out.println("Servo Value" + value);
-    if (m_shooter.isOverridden) {
-      m_shooter.setServoPosition(value);
-    }
-    System.out.println("servo pos is " + m_shooter.getServoPosition());
-    
+    m_shooter.overrideCamera();
   }
 
   // Called once the command ends or is interrupted.

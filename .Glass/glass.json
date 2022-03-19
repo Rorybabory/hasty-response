@@ -1,11 +1,26 @@
 {
   "NetworkTables": {
+    "CameraPublisher": {
+      "open": true
+    },
+    "LiveWindow": {
+      "DriveTrain": {
+        "open": true
+      }
+    },
     "SmartDashboard": {
+      "open": true
+    },
+    "Usage": {
+      "Client": {
+        "open": true
+      },
       "open": true
     },
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/Intake": "Subsystem",
+      "/LiveWindow/Lighting": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/DigitalOutput[2]": "Digital Output",
       "/LiveWindow/Ungrouped/PWMTalonFX[0]": "Motor Controller",

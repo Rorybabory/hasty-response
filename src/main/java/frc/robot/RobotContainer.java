@@ -19,6 +19,7 @@ import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
 import frc.robot.commands.IntakeToShoot;
+import frc.robot.commands.OverrideDistance;
 import frc.robot.commands.RunBTS;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
@@ -56,10 +57,12 @@ public class RobotContainer {
   private final JoystickButton b_intakeSpin_rev;
   private final JoystickButton b_hanger_up;
   private final JoystickButton b_hanger_down;
-  private final JoystickButton b_hanger_open;
-  private final JoystickButton b_hanger_closed;
+  //private final JoystickButton b_hanger_open;
+ // private final JoystickButton b_hanger_closed;
   private final JoystickButton b_runShooter;
-  private final JoystickButton b_intakeToShoot;
+  private final JoystickButton b_overrideServo;
+
+  //private final JoystickButton b_intakeToShoot;
 
   private final JoystickButton b_intakeExtend_guitar;
   private final JoystickButton b_intakeRetract_guitar;
@@ -76,10 +79,10 @@ public class RobotContainer {
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
     b_intakeSpin_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV);
-    b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
-    b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
-    b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
-
+    // b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
+    // b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
+   // b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
+    b_overrideServo = new JoystickButton(j_joystick, Constants.Controls.BUTTON_OVERRIDE_DISTANCE);
     b_intakeExtend_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_EXTEND_GUITAR);
     b_intakeRetract_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_RETRACT_GUITAR);
     b_intakeSpin_rev_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_REV_GUITAR);
@@ -102,9 +105,9 @@ public class RobotContainer {
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
     b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts, Constants.Shooter.SHOOTER_SPEED));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake, false));
-    b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
-    b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
-
+   // b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
+    //b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
+    b_overrideServo.whenPressed(new OverrideDistance(m_shooter));
     if (Constants.Controls.useGuitar) {
       b_hanger_up_guitar.whileHeld(new HangUp(m_hanger));
       b_hanger_down_guitar.whileHeld(new HangDown(m_hanger));

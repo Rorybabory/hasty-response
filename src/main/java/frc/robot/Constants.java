@@ -37,7 +37,7 @@ public final class Constants {
     public static final class Controls {
         public static final boolean useGuitar = false;
 
-
+        public static final int BUTTON_OVERRIDE_DISTANCE = 9;
         public static final int JOYSTICK_USB = 0;
         public static final int GUITAR_USB = 1;
         public static final int BUTTON_SHOOT_FLYWHEEL = 1;
@@ -47,8 +47,6 @@ public final class Constants {
         public static final int BUTTON_INTAKE_REV = 5;
         public static final int BUTTON_HANGER_DOWN = 7;
         public static final int BUTTON_HANGER_UP = 8;
-        public static final int BUTTON_HANGER_CLOSE = 9;
-        public static final int BUTTON_HANGER_OPEN = 10;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
         
         public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
@@ -81,7 +79,7 @@ public final class Constants {
         public static final int SHOOTER_PWM_1 = 1;
         public static final int SERVO_PWM = 7;
         public static final int SERVO_PWM_2 = 8;
-
+        public static final boolean ADJUST_HOOD = true;
     }
     public static final class Vision {
         public static final double VISION_TARGET_HEIGHT = 104.0; //inches

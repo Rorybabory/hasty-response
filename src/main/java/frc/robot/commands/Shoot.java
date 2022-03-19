@@ -23,7 +23,7 @@ public class Shoot extends CommandBase {
   private final BTS m_bts;
   private double speed;
   private Timer timer;
- 
+  boolean setServoPos = false;
   public Shoot(Shooter shooter, Intake intake, BTS bts, double sp) {
     m_shooter = shooter;
     m_intake = intake;
@@ -36,12 +36,13 @@ public class Shoot extends CommandBase {
   @Override
   public void initialize() {
     timer.start();
+    setServoPos = false;
   }
 
 
   @Override
   public void execute() {
-    if (timer.hasElapsed(1.25)) {
+    if (timer.hasElapsed(2.0)) {
       m_intake.enableDoghouse();
       m_bts.setRoller(Constants.BTS.BTS_SPEED);
     }
@@ -49,12 +50,24 @@ public class Shoot extends CommandBase {
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
-    if (distance < 105) {
-      speed = 0.66;
-      m_shooter.setServoPosition(0.82);
-    }else {
-      speed = 1.0;
-      m_shooter.setServoPosition(0.17);
+    if (Constants.Shooter.ADJUST_HOOD && setServoPos == false) {
+      if (distance < 105) {
+        m_shooter.setServoPosition(0.82);
+        speed = 0.66;
+        System.out.println("under 105");
+        setServoPos = true;
+      }else if (distance > 300) {
+        m_shooter.setServoPosition(0.2);
+        speed = 1.0;
+        System.out.println("over 300");
+        setServoPos = true;
+      }else {
+        System.out.println("neither");    
+        double percent = (distance-100.0)/200;
+        speed = (percent*(1.0/3.0)) + (2.0/3.0);
+        m_shooter.setServoPosition((percent * 0.6)+0.2);
+      }
+
     }
 
     m_shooter.shoot(speed);

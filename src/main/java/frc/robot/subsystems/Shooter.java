@@ -18,11 +18,12 @@ public class Shooter extends SubsystemBase {
   private Servo sv_servo_l;
   private Servo sv_servo_r;
   private NetworkTable nt_table;
+  public boolean isOverridden;
 
   public Shooter() {
     sv_servo_l = new Servo(Constants.Shooter.SERVO_PWM);
     sv_servo_r = new Servo(Constants.Shooter.SERVO_PWM_2);
-
+    isOverridden = false;
     mc_flyWheel = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_0);
     mc_flyWheel2 = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_1);
     nt_table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -37,7 +38,7 @@ public class Shooter extends SubsystemBase {
   public void setServoPosition(double value) { //value is 0 to 1
     sv_servo_l.set(value);
     sv_servo_r.set(value);
-    
+    System.out.println("setting servo position to " + value);
   }
   public double getServoPosition() {
     return sv_servo_l.get();
@@ -71,6 +72,16 @@ public class Shooter extends SubsystemBase {
     double distanceFromLimelightToGoalInches = (Constants.Vision.VISION_TARGET_HEIGHT-Constants.Vision.VISION_CAMERA_HEIGHT)/Math.tan(angleToGoalRadians);
 
     return distanceFromLimelightToGoalInches;
+  }
+  public void overrideCamera() {
+    if(isOverridden){
+      System.out.println("using algebra");
+      isOverridden = false;
+    }
+    else{
+      System.out.println("good luck!");
+      isOverridden = true;
+    }
   }
   @Override
   public void simulationPeriodic() {
