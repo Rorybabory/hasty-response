@@ -56,8 +56,6 @@ public final class Constants {
         public static final int BUTTON_INTAKE_REV_GUITAR = 3;
         public static final int BUTTON_HANGER_UP_GUITAR = 4;
         public static final int BUTTON_HANGER_DOWN_GUITAR = 5;
-        
-
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
