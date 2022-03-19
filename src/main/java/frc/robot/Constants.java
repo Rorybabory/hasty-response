@@ -40,14 +40,13 @@ public final class Constants {
         public static final int BUTTON_INTAKE_ROLLER = 2;
         public static final int BUTTON_INTAKE_RETRACT = 3;
         public static final int BUTTON_INTAKE_EXTEND = 4;
+        public static final int BUTTON_INTAKE_REV = 5;
         public static final int BUTTON_HANGER_DOWN = 7;
         public static final int BUTTON_HANGER_UP = 8;
         public static final int BUTTON_HANGER_CLOSE = 9;
         public static final int BUTTON_HANGER_OPEN = 10;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
-        public static final int BUTTON_BTS_ROLLER_REV = 5;
-        public static final int BUTTON_BTS_ROLLER = 6;
-
+        
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out

@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class IntakeBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;
-
+  private final boolean reverse;
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeBall(Intake i) {
+  public IntakeBall(Intake i, boolean reverse) {
+    this.reverse = reverse;
     m_intake = i;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(i);
@@ -30,7 +31,7 @@ public class IntakeBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_intake.enableMotor();
+      m_intake.enableMotor(reverse);
   }
 
   // Called once the command ends or is interrupted.

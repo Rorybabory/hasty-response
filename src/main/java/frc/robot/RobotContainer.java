@@ -66,6 +66,7 @@ public class RobotContainer {
     b_intakeExtend = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND);
     b_intakeRetract = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT);
     b_intakeSpin = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_ROLLER);
+    b_intakeSpin_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV);
     b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
     b_runBTS = new JoystickButton(j_joystick, Constants.Controls.BUTTON_BTS_ROLLER);
@@ -90,7 +91,8 @@ public class RobotContainer {
     b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts, Constants.Shooter.SHOOTER_SPEED));
     b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
     b_intakeRetract.whileHeld(new IntakeClose(m_intake));
-    b_intakeSpin.whileHeld(new IntakeBall(m_intake));
+    b_intakeSpin.whileHeld(new IntakeBall(m_intake, false));
+    b_intakeSpin_rev.whileHeld(new IntakeBall(m_intake, true));
     b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
     b_runBTS.whileHeld(new RunBTS(m_bts, Constants.BTS.BTS_SPEED));
