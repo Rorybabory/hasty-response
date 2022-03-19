@@ -37,7 +37,10 @@ public class Shooter extends SubsystemBase {
   public void setServoPosition(double value) { //value is 0 to 1
     sv_servo_l.set(value);
     sv_servo_r.set(value);
-
+    
+  }
+  public double getServoPosition() {
+    return sv_servo_l.get();
   }
   public void shoot(double speed){
     mc_flyWheel.set(speed);

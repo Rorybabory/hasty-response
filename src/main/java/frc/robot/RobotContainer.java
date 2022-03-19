@@ -39,6 +39,7 @@ import frc.robot.subsystems.Shooter;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Joystick j_joystick = new Joystick(Constants.Controls.JOYSTICK_USB);
+  private final Joystick j_guitar = new Joystick(Constants.Controls.GUITAR_USB);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Shooter m_shooter = new Shooter();
   private final Intake m_intake = new Intake();
@@ -79,11 +80,11 @@ public class RobotContainer {
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
     b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
 
-    b_intakeExtend_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND_GUITAR);
-    b_intakeRetract_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT_GUITAR);
-    b_intakeSpin_rev_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV_GUITAR);
-    b_hanger_up_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP_GUITAR);
-    b_hanger_down_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_DOWN_GUITAR);
+    b_intakeExtend_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_EXTEND_GUITAR);
+    b_intakeRetract_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_RETRACT_GUITAR);
+    b_intakeSpin_rev_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_REV_GUITAR);
+    b_hanger_up_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_HANGER_UP_GUITAR);
+    b_hanger_down_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_HANGER_DOWN_GUITAR);
 
     // Configure the button bindings
     configureButtonBindings();

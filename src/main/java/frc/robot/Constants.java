@@ -78,7 +78,7 @@ public final class Constants {
         public static final double HANGER_BOTTOM = 0.2;
     }
     public static final class Shooter {
-        public static final double SHOOTER_SPEED = 0.667;
+        public static final double SHOOTER_SPEED = 1.0;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
         public static final int SERVO_PWM = 7;
