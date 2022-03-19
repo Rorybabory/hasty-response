@@ -35,7 +35,11 @@ public final class Constants {
         public static final int RING_DIO = 2;
     }
     public static final class Controls {
+        public static final boolean useGuitar = false;
+
+
         public static final int JOYSTICK_USB = 0;
+        public static final int GUITAR_USB = 1;
         public static final int BUTTON_SHOOT_FLYWHEEL = 1;
         public static final int BUTTON_INTAKE_ROLLER = 2;
         public static final int BUTTON_INTAKE_RETRACT = 3;
@@ -47,6 +51,13 @@ public final class Constants {
         public static final int BUTTON_HANGER_OPEN = 10;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
         
+        public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
+        public static final int BUTTON_INTAKE_RETRACT_GUITAR = 9;
+        public static final int BUTTON_INTAKE_REV_GUITAR = 3;
+        public static final int BUTTON_HANGER_UP_GUITAR = 4;
+        public static final int BUTTON_HANGER_DOWN_GUITAR = 5;
+        
+
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out

@@ -47,6 +47,8 @@ public class RobotContainer {
   private final Lighting m_lights = new Lighting();
   private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
 
+
+  //joystick
   private final JoystickButton b_intakeExtend;
   private final JoystickButton b_intakeRetract;
   private final JoystickButton b_intakeSpin;
@@ -57,6 +59,13 @@ public class RobotContainer {
   private final JoystickButton b_hanger_closed;
   private final JoystickButton b_runShooter;
   private final JoystickButton b_intakeToShoot;
+
+  private final JoystickButton b_intakeExtend_guitar;
+  private final JoystickButton b_intakeRetract_guitar;
+  private final JoystickButton b_intakeSpin_rev_guitar;
+  private final JoystickButton b_hanger_up_guitar;
+  private final JoystickButton b_hanger_down_guitar;
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     b_hanger_up = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP);
@@ -69,6 +78,13 @@ public class RobotContainer {
     b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
     b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
     b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
+
+    b_intakeExtend_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_EXTEND_GUITAR);
+    b_intakeRetract_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_RETRACT_GUITAR);
+    b_intakeSpin_rev_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV_GUITAR);
+    b_hanger_up_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP_GUITAR);
+    b_hanger_down_guitar = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_DOWN_GUITAR);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -83,15 +99,25 @@ public class RobotContainer {
     m_lights.setDefaultCommand(new setRingLight(m_lights, true));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
-    b_hanger_up.whileHeld(new HangUp(m_hanger));
-    b_hanger_down.whileHeld(new HangDown(m_hanger));
     b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts, Constants.Shooter.SHOOTER_SPEED));
-    b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
-    b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake, false));
-    b_intakeSpin_rev.whileHeld(new IntakeBall(m_intake, true));
     b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
+
+    if (Constants.Controls.useGuitar) {
+      b_hanger_up_guitar.whileHeld(new HangUp(m_hanger));
+      b_hanger_down_guitar.whileHeld(new HangDown(m_hanger));
+      b_intakeSpin_rev_guitar.whileHeld(new IntakeBall(m_intake, true));
+      b_intakeExtend_guitar.whileHeld(new IntakeOpen(m_intake));
+      b_intakeRetract_guitar.whileHeld(new IntakeClose(m_intake));
+    }else {
+      b_hanger_up.whileHeld(new HangUp(m_hanger));
+      b_hanger_down.whileHeld(new HangDown(m_hanger));
+      b_intakeSpin_rev.whileHeld(new IntakeBall(m_intake, true));
+      b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
+      b_intakeRetract.whileHeld(new IntakeClose(m_intake));
+    }
+
     //b_intakeToShoot.whileHeld(new IntakeToShoot(m_intake, m_bts));
   }
 
