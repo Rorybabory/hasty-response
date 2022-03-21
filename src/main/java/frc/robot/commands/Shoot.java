@@ -50,22 +50,22 @@ public class Shoot extends CommandBase {
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
-    if (Constants.Shooter.ADJUST_HOOD && setServoPos == false) {
+    if (!m_shooter.isOverridden && setServoPos == false) {
       if (distance < 105) {
-        m_shooter.setServoPosition(0.82);
+        m_shooter.setServoPosition(0.8);
         speed = 0.66;
         System.out.println("under 105");
-        setServoPos = true;
+        //setServoPos = true;
       }else if (distance > 300) {
         m_shooter.setServoPosition(0.2);
         speed = 1.0;
         System.out.println("over 300");
-        setServoPos = true;
+        //setServoPos = true;
       }else {
-        System.out.println("neither");    
-        double percent = (distance-100.0)/200;
+        System.out.println("neither");
+        double percent = (distance-100.0)/200.0;
         speed = (percent*(1.0/3.0)) + (2.0/3.0);
-        m_shooter.setServoPosition((percent * 0.6)+0.2);
+        m_shooter.setServoPosition(-(percent*.6)+.8);
       }
 
     }
