@@ -63,6 +63,14 @@ public class Shooter extends SubsystemBase {
     }
     return ty.getDouble(10.0);
   }
+  public boolean getTV() {
+    NetworkTableEntry tv = nt_table.getEntry("tv");
+    
+    if (!tv.exists()) {
+      System.out.println("ERROR: INVALID NETWORK TABLE ENTRY TV");
+    }
+    return tv.getBoolean(true);
+  }
   public double getDistance() {
     double targetOffsetAngle_Vertical = getTY();
 
@@ -71,7 +79,11 @@ public class Shooter extends SubsystemBase {
 
     double distanceFromLimelightToGoalInches = (Constants.Vision.VISION_TARGET_HEIGHT-Constants.Vision.VISION_CAMERA_HEIGHT)/Math.tan(angleToGoalRadians);
 
-    return distanceFromLimelightToGoalInches;
+    if (!getTV()) {
+      return -1.0;
+    }else {
+      return distanceFromLimelightToGoalInches;
+    }
   }
   public void overrideCamera() {
     if(isOverridden){

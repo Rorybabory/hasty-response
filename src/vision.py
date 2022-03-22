@@ -29,9 +29,11 @@ sd = NetworkTables.getTable("SmartDashboard")
 logging.basicConfig(level=logging.DEBUG)
 cs = CameraServer.getInstance()
 cs.enableLogging()
-camera = cs.startAutomaticCapture()
-camera.setResolution(160, 120)
+camera = cs.startAutomaticCapture(dev=0)
+usb1 = cs.startAutomaticCapture(dev=1)
 
+camera.setResolution(480, 360)
+usb1.setResolution(480, 360)
 
 
 sink = cs.getVideo()
@@ -40,7 +42,7 @@ img = np.zeros(shape=(120, 160, 3),dtype=np.uint8)
 output = cs.putVideo("Camera View", 160, 120)
 while True:
     time, input_img = sink.grabFrame(img)
-    distance = sd.getNumber("Target Distance")
+    distance = sd.getNumber("Target Distance", -2.0)
     input_img = cv2.putText(input_img, str(distance), (0,0), cv2.FONT_HERSHEY_SIMPLEX, 
                    1, (255,0,0), 1, cv2.LINE_AA)
     if time == 0:
