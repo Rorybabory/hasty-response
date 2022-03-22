@@ -56,6 +56,13 @@ public class Shooter extends SubsystemBase {
   public void getEncoderDifference(){
     
   }
+  public double getTX() {
+    NetworkTableEntry tx = nt_table.getEntry("tx");
+    if (!tx.exists()) {
+      System.out.println("ERROR: INVALID NETWORK TABLE ENTRY TX");
+    }
+    return tx.getDouble(0.0);
+  }
   public double getTY() {
     NetworkTableEntry ty = nt_table.getEntry("ty");
     if (!ty.exists()) {

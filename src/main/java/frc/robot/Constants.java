@@ -30,6 +30,8 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
         public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 1.0; //default
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
+
+        public static final double DRIVE_PIVOT_SPEED = 0.5;
     }
     public static final class Lighting {
         public static final int RING_DIO = 2;
@@ -45,6 +47,7 @@ public final class Constants {
         public static final int BUTTON_INTAKE_RETRACT = 3;
         public static final int BUTTON_INTAKE_EXTEND = 4;
         public static final int BUTTON_INTAKE_REV = 5;
+        public static final int BUTTON_PIVOT_TO_TARGET = 6;
         public static final int BUTTON_HANGER_DOWN = 7;
         public static final int BUTTON_HANGER_UP = 8;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
