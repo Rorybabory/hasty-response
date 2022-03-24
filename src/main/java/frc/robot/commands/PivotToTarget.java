@@ -30,7 +30,8 @@ public class PivotToTarget extends CommandBase {
     @Override
     public void execute() {
         double tx = m_shooter.getTX();
-        if (Math.abs(tx) < 5) {
+        if (Math.abs(tx) > 5) {
+            System.out.println("pivoting");
             if (tx > 0) {
                 m_drive.arcadeDrive(Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn right
             }else {

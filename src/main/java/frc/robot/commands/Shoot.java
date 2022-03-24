@@ -24,11 +24,10 @@ public class Shoot extends CommandBase {
   private double speed;
   private Timer timer;
   boolean setServoPos = false;
-  public Shoot(Shooter shooter, Intake intake, BTS bts, double sp) {
+  public Shoot(Shooter shooter, Intake intake, BTS bts) {
     m_shooter = shooter;
     m_intake = intake;
     m_bts = bts;
-    speed = sp;
     timer = new Timer();
   }
 
@@ -38,10 +37,7 @@ public class Shoot extends CommandBase {
     timer.start();
     setServoPos = false;
   }
-
-
-  @Override
-  public void execute() {
+  public void runShoot() { //seperated to reduce reduncency with auto.
     if (timer.hasElapsed(2.0)) {
       m_intake.enableDoghouse();
       m_bts.setRoller(Constants.BTS.BTS_SPEED);
@@ -64,13 +60,19 @@ public class Shoot extends CommandBase {
       }else {
         System.out.println("neither");
         double percent = (distance-100.0)/200.0;
-        speed = (percent*(1.0/3.0)) + (2.0/3.0);
+        speed = (percent*(1.0/3.0)) + (2.0/3.0)+0.05;
         m_shooter.setServoPosition(-(percent*.6)+.8);
       }
 
     }
 
     m_shooter.shoot(speed);
+
+  }
+
+  @Override
+  public void execute() {
+    runShoot();
   }
 
   // Called once the command ends or is interrupted.

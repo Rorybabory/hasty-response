@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoFWD;
+import frc.robot.commands.Auto;
+import frc.robot.commands.AutoMove;
 import frc.robot.commands.Drive;
 import frc.robot.commands.HangDown;
 import frc.robot.commands.HangUp;
@@ -44,7 +45,7 @@ public class RobotContainer {
   private final BTS m_bts = new BTS();
   private final Hanger m_hanger = new Hanger();
   private final Lighting m_lights = new Lighting();
-  private final AutoFWD a_auto_forward = new AutoFWD(m_driveTrain);
+  private final Auto a_auto = new Auto(m_driveTrain, m_shooter, m_intake, m_bts);
 
 
   //joystick
@@ -102,7 +103,7 @@ public class RobotContainer {
     m_lights.setDefaultCommand(new setRingLight(m_lights, true));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
-    b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts, Constants.Shooter.SHOOTER_SPEED));
+    b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake, false));
    // b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     //b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
@@ -132,6 +133,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An AutonomousThingy will run in autonomous
-    return a_auto_forward;
+    return a_auto;
   }
 }
