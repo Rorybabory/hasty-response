@@ -14,6 +14,9 @@ public class AutoShoot extends Shoot{
     }
     @Override
     public void initialize(){
+        this.time.reset();
+        this.time.start();
+        
         System.out.println("running auto shoot");
     }
     public void execute (){

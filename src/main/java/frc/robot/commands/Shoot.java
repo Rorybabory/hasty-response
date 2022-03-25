@@ -22,27 +22,27 @@ public class Shoot extends CommandBase {
   private final Intake m_intake;
   private final BTS m_bts;
   private double speed;
-  private Timer timer;
+  protected Timer time;
   boolean setServoPos = false;
   public Shoot(Shooter shooter, Intake intake, BTS bts) {
     m_shooter = shooter;
     m_intake = intake;
     m_bts = bts;
-    timer = new Timer();
+    time = new Timer();
   }
-
 
   @Override
   public void initialize() {
-    timer.start();
+    time.start();
     setServoPos = false;
   }
+  
   public void runShoot() { //seperated to reduce reduncency with auto.
-    if (timer.hasElapsed(2.0)) {
+    if (time.hasElapsed(1.0)) {
       m_intake.enableDoghouse();
       m_bts.setRoller(Constants.BTS.BTS_SPEED);
     }
-    System.out.println("time running command is: " + timer.get());
+    System.out.println("time running command is: " + time.get());
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
@@ -66,6 +66,9 @@ public class Shoot extends CommandBase {
 
     }
 
+    speed = Math.sqrt(19.6*distance)/34.22;
+    System.out.println("speed: " + speed);
+
     m_shooter.shoot(speed);
 
   }
@@ -73,8 +76,8 @@ public class Shoot extends CommandBase {
     m_shooter.stopShoot();
     m_intake.disableDoghouse();
     m_bts.setRoller(0.0);
-    timer.stop();
-    timer.reset();
+    time.stop();
+    time.reset();
 
   }
   @Override
