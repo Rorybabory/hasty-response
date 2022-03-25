@@ -20,6 +20,10 @@ public class AutoShoot extends Shoot{
         runShoot();
     }
     @Override
+    public void end(boolean interrupted) {
+      stopAll();
+    }
+    @Override
   public boolean isFinished() {
     return false;
   }

@@ -60,8 +60,8 @@ public class Shoot extends CommandBase {
       }else {
         System.out.println("neither");
         double percent = (distance-100.0)/200.0;
-        speed = (percent*(1.0/3.0)) + (2.0/3.0)+0.05;
-        m_shooter.setServoPosition(-(percent*.6)+.8);
+        speed = (percent*(1.0/3.0)) + (2.0/3.0)-.05;
+        m_shooter.setServoPosition(-(percent*.6)+.84);
       }
 
     }
@@ -69,7 +69,14 @@ public class Shoot extends CommandBase {
     m_shooter.shoot(speed);
 
   }
+  public void stopAll() {
+    m_shooter.stopShoot();
+    m_intake.disableDoghouse();
+    m_bts.setRoller(0.0);
+    timer.stop();
+    timer.reset();
 
+  }
   @Override
   public void execute() {
     runShoot();
@@ -78,11 +85,7 @@ public class Shoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      m_shooter.stopShoot();
-      m_intake.disableDoghouse();
-      m_bts.setRoller(0.0);
-      timer.stop();
-      timer.reset();
+    stopAll();
   }
 
   // Returns true when the command should end.

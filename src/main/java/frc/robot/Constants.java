@@ -37,7 +37,7 @@ public final class Constants {
         public static final int RING_DIO = 2;
     }
     public static final class Controls {
-        public static final boolean useGuitar = false;
+        public static final boolean useGuitar = true;
 
         public static final int BUTTON_OVERRIDE_DISTANCE = 9;
         public static final int JOYSTICK_USB = 0;
@@ -86,8 +86,8 @@ public final class Constants {
     }
     public static final class Vision {
         public static final double VISION_TARGET_HEIGHT = 104.0; //inches
-        public static final double VISION_CAMERA_HEIGHT = 24.0; //inches
-        public static final double VISION_CAMERA_ANGLE = 23.0; //degrees
+        public static final double VISION_CAMERA_HEIGHT = 36.0; //inches
+        public static final double VISION_CAMERA_ANGLE = 31.5; //degrees
     }
     public static final class Intake {
         public static final int INTAKE_ROLLER_PWM = 4;

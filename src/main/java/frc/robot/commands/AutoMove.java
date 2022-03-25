@@ -27,6 +27,10 @@ public class AutoMove  extends CommandBase{
         drive.arcadeDrive(0, speed, .0);
     }
     @Override
+    public void end(boolean interrupted) {
+      drive.arcadeDrive(0,0,0);
+    }
+    @Override
   public boolean isFinished() {
     return (timer.get() > time);
   }
