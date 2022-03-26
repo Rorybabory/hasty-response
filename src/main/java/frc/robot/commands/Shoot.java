@@ -21,7 +21,8 @@ public class Shoot extends CommandBase {
   private final Shooter m_shooter;
   private final Intake m_intake;
   private final BTS m_bts;
-  private double speed;
+  private double speed1;
+  private double oldSpeed;
   protected Timer time;
   boolean setServoPos = false;
   public Shoot(Shooter shooter, Intake intake, BTS bts) {
@@ -46,32 +47,72 @@ public class Shoot extends CommandBase {
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
-    if (!m_shooter.isOverridden && setServoPos == false) {
-      if (distance < 105) {
-        m_shooter.setServoPosition(0.8);
-        speed = 0.66;
-        System.out.println("under 105");
-        //setServoPos = true;
-      }else if (distance > 300) {
-        m_shooter.setServoPosition(0.2);
-        speed = 1.0;
-        System.out.println("over 300");
-        //setServoPos = true;
-      }else {
-        System.out.println("neither");
+    // if (!m_shooter.isOverridden && setServoPos == false) {
+      // if (distance < 105) {
+      //   m_shooter.setServoPosition(0.8);
+      //   speed = 0.7;
+      //   System.out.println("under 105");
+      //   //setServoPos = true;
+      // }else if (distance > 300) {
+      //   m_shooter.setServoPosition(0.2);
+      //   speed = 1.0;
+      //   System.out.println("over 300");
+      //   //setServoPos = true;
+      // }else {
+       // System.out.println("neither");
         double percent = (distance-100.0)/200.0;
-        speed = (percent*(1.0/3.0)) + (2.0/3.0)-.05;
-        m_shooter.setServoPosition(-(percent*.6)+.84);
-      }
+        oldSpeed = (percent*(1.0/3.0)) + (2.0/3.0)+.03;
+        double s = (((Math.sqrt(19.6*(distance*0.0254)))/34.22)*2);
+        speed1 = s;
+        double a = Math.atan(6/(distance*0.0254));
+        
+        
+        double j = 8.75*Math.sin(a);
+        double k = 8.75*Math.cos(a);
+        double f = (10-k);
+        double o = Math.sqrt(Math.pow(f,2)+Math.pow(j,2));
+        double e = (25.4*(o-9)*0.0164); 
+        //e =  Double.parseDouble(String.format("%.2d", e));
+       
+       
+       
+       
+       
+       
+       
+        if(e>.17 && e<.82) {
+          m_shooter.setServoPosition(e);
+          System.out.println("good");
+          //System.out.println("a= " + a + "\n" + "j= " + j + "\n" + "l=  " + l + "\n" + "o= " + o + "\n" + "e= " + e + "\n");
+        }
+        else if(e<.17)
+        {
+          m_shooter.setServoPosition(.17);
+          System.out.println("Out Of Range");
+          speed1=oldSpeed;
 
+        }
+        else if(e>.82){
+          m_shooter.setServoPosition(.82);
+          System.out.println("TOO CLOSE, use your eyes");
+          speed1=oldSpeed;
+        }
+        else {
+          System.out.println("Something impossible happened. Go buy a lottery ticket!");
+        }
+      
+
+    
+
+    
+   // System.out.println("speed: " + speed1);
+// change parameter to speed1
+    System.out.println(speed1);
+
+    // change parameter to speed1
+    m_shooter.shoot(speed1);
     }
-
-    speed = Math.sqrt(19.6*distance)/34.22;
-    System.out.println("speed: " + speed);
-
-    m_shooter.shoot(speed);
-
-  }
+  
   public void stopAll() {
     m_shooter.stopShoot();
     m_intake.disableDoghouse();
