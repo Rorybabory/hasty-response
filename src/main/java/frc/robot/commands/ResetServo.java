@@ -9,19 +9,19 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
 /** An example command that uses an example subsystem. */
-public class OverrideDistance extends CommandBase {
+public class ResetServo extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Shooter m_shooter;
+  private Shooter m_shoot;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public OverrideDistance(Shooter subsystem) {
-    m_shooter = subsystem;
+  public ResetServo(Shooter subsystem) {
+    m_shoot = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(subsystem);
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +31,8 @@ public class OverrideDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   // m_shooter.overrideCamera();
+    m_shoot.setServoPosition(.7);
+    System.out.println("resetting servo");
   }
 
   // Called once the command ends or is interrupted.

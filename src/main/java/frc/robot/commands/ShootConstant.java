@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /** An example command that uses an example subsystem. */
-public class Shoot extends CommandBase {
+public class ShootConstant extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter m_shooter;
   private final Intake m_intake;
@@ -30,7 +30,7 @@ public class Shoot extends CommandBase {
   private JoystickButton m_resetServo;
   protected Timer time;
   boolean setServoPos = false;
-  public Shoot(Shooter shooter, Intake intake, BTS bts) {
+  public ShootConstant(Shooter shooter, Intake intake, BTS bts) {
     m_shooter = shooter;
     m_intake = intake;
     m_bts = bts;
@@ -55,39 +55,13 @@ public class Shoot extends CommandBase {
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
-    if (m_override.get() == false) {
-      if (distance < 105) {
-        m_shooter.setServoPosition(0.78);
-        speed = 0.7;
-        System.out.println("under 105");
-        //setServoPos = true;
-      }else if (distance > 300) {
-        m_shooter.setServoPosition(0.2);
-        speed = 1.0;
-        System.out.println("over 300");
-        //setServoPos = true;
-      }else {
-        System.out.println("neither");
-        double percent = (distance-100.0)/200.0;
-        speed = (percent*(1.0/3.0)) + (2.0/3.0+.06);
-        m_shooter.setServoPosition(-(percent*.6)+.76);
-      }
-      System.out.println("Using the maths");
-    }
-    else if(m_resetServo.get() == true){
-      m_shooter.setServoPosition(.75);
-      speed = .7;
-      System.out.println("Good luck! Shootin from the hip.");
-    }
-    else{
-      speed = .7;
-    }
-
-    speed1 = Math.sqrt(19.6*distance)/34.22;
+      
+    
     System.out.println("speed: " + speed);
     System.out.println("overriding?" + m_override.get());
 
-    m_shooter.shoot(speed);
+
+    m_shooter.shoot(0.75);
 
   }
   public void stopAll() {

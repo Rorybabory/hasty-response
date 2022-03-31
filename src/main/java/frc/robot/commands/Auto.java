@@ -8,7 +8,7 @@ import frc.robot.subsystems.Shooter;
 
 public class Auto extends SequentialCommandGroup {
     public Auto(DriveTrain drive, Shooter shooter, Intake intake, BTS bts) {
-        addCommands(new AutoMove(drive, 0.5, 1.5),
+        addCommands(new AutoMove(drive, 0.5, 2),
                     new Shoot(shooter, intake, bts));
     }
 }

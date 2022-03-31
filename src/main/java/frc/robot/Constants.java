@@ -37,7 +37,7 @@ public final class Constants {
         public static final int RING_DIO = 2;
     }
     public static final class Controls {
-        public static final boolean useGuitar = true;
+        public static final boolean useGuitar = false;
 
         public static final int BUTTON_OVERRIDE_DISTANCE = 9;
         public static final int JOYSTICK_USB = 0;
@@ -51,6 +51,7 @@ public final class Constants {
         public static final int BUTTON_HANGER_DOWN = 7;
         public static final int BUTTON_HANGER_UP = 8;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
+        public static final int BUTTON_SHOOTER_RESET = 10;
         
         public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
         public static final int BUTTON_INTAKE_RETRACT_GUITAR = 9;
@@ -90,11 +91,11 @@ public final class Constants {
         public static final double VISION_CAMERA_ANGLE = 31.5; //degrees
     }
     public static final class Intake {
-        public static final int INTAKE_ROLLER_PWM = 4;
+        public static final int INTAKE_ROLLER_CAN = 9;
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_ROLLER_SPEED = -1.0;
+        public static final double INTAKE_ROLLER_SPEED = -0.5;
         public static final double INTAKE_DOGHOUSE_SPEED = -1.0;
 
         
