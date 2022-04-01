@@ -61,7 +61,7 @@ public class ShootConstant extends CommandBase {
     System.out.println("overriding?" + m_override.get());
 
 
-    m_shooter.shoot(0.75);
+    m_shooter.shoot(0.5);
 
   }
   public void stopAll() {
