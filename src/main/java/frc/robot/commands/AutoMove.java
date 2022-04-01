@@ -22,7 +22,7 @@ public class AutoMove  extends CommandBase{
     }
     public void execute (){
         
-        drive.arcadeDrive(0, speed, .0);
+        drive.arcadeDrive(0, -speed, .0);
     }
     @Override
     public void end(boolean interrupted) {
