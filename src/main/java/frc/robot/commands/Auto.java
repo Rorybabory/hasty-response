@@ -12,6 +12,6 @@ public class Auto extends SequentialCommandGroup {
                     new AutoForwardIntake(drive, intake, 3.0/*value must change later*/),
                     new AutoMove(drive, 0.5, 1.0),
                     new AutoTurnUntilTarget(drive),
-                    new PivotToTarget(shooter, drive),
+                    new PivotToTarget(shooter, drive)
     }
 }
