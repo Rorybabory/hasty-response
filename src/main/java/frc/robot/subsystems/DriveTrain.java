@@ -15,6 +15,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
 
 
@@ -30,7 +31,10 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     // private Encoder enc_Left, enc_Right;
-    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB1);
+    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB);
+    public AHRS NAVX_2 = new AHRS(SerialPort.Port.kUSB1);
+    public AHRS NAVX_3 = new AHRS(SerialPort.Port.kOnboard);
+    public AHRS NAVX_4 = new AHRS(I2C.Port.kMXP);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
     boolean isSpark = false;
     
@@ -38,13 +42,14 @@ public class DriveTrain extends SubsystemBase
     //public ArrayList<CANSparkMax> sparkMotors; //NOTE: ONLY ACCESS IF isSpark IS TRUE
     
     public DriveTrain(){
+        
         sp_left1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT1, MotorType.kBrushless);
         sp_left2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_LEFT2, MotorType.kBrushless);
         sp_right1 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT1, MotorType.kBrushless);
         sp_right2 = new CANSparkMax(Constants.DriveTrain.DRIVE_CAN_RIGHT2, MotorType.kBrushless);
 
         f_field = new Field2d();
-        o_odometry.resetPosition(new Pose2d(new Translation2d(0,0), new Rotation2d(0.0)), new Rotation2d(0.0));
+        o_odometry.resetPosition(new Pose2d(new Translation2d(6,5), new Rotation2d(0.0)), new Rotation2d(0.0));
         f_field.setRobotPose(new Pose2d(new Translation2d(5,5), new Rotation2d(0.0)));
         spg_left = new MotorControllerGroup(sp_left1, sp_left2);
         spg_right = new MotorControllerGroup(sp_right1, sp_right2);
@@ -78,6 +83,10 @@ public class DriveTrain extends SubsystemBase
       o_odometry.update(NAVX.getRotation2d(), getEncoderLeft(), getEncoderRight());
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
+      SmartDashboard.putBoolean("NAVX1 Connected", NAVX.isConnected());
+      SmartDashboard.putBoolean("NAVX2 Connected", NAVX_2.isConnected());
+      SmartDashboard.putBoolean("NAVX3 Connected", NAVX_3.isConnected());
+      SmartDashboard.putBoolean("NAVX4 Connected", NAVX_4.isConnected());
     }
     
 }

@@ -19,8 +19,11 @@ import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
 import frc.robot.commands.OverrideDistance;
 import frc.robot.commands.PivotToTarget;
+import frc.robot.commands.ResetServo;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.ShootConstant;
+import frc.robot.commands.ShootDavid;
 import frc.robot.commands.setRingLight;
 import frc.robot.subsystems.BTS;
 import frc.robot.subsystems.DriveTrain;
@@ -28,6 +31,7 @@ import frc.robot.subsystems.Hanger;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lighting;
 import frc.robot.subsystems.Shooter;
+import pabeles.concurrency.ConcurrencyOps.Reset;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,7 +50,7 @@ public class RobotContainer {
   private final Hanger m_hanger = new Hanger();
   private final Lighting m_lights = new Lighting();
   private final Auto a_auto = new Auto(m_driveTrain, m_shooter, m_intake, m_bts);
-
+  private final ResetServo m_resetServo = new ResetServo(m_shooter);
 
   //joystick
   private final JoystickButton b_intakeExtend;
@@ -68,7 +72,7 @@ public class RobotContainer {
   private final JoystickButton b_intakeSpin_rev_guitar;
   private final JoystickButton b_hanger_up_guitar;
   private final JoystickButton b_hanger_down_guitar;
-
+  private final JoystickButton b_resetServoPos;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     b_hanger_up = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP);
@@ -88,7 +92,7 @@ public class RobotContainer {
     b_intakeSpin_rev_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_INTAKE_REV_GUITAR);
     b_hanger_up_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_HANGER_UP_GUITAR);
     b_hanger_down_guitar = new JoystickButton(j_guitar, Constants.Controls.BUTTON_HANGER_DOWN_GUITAR);
-
+    b_resetServoPos = new JoystickButton(j_joystick, 10);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -103,29 +107,30 @@ public class RobotContainer {
     m_lights.setDefaultCommand(new setRingLight(m_lights, true));
     m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, j_joystick));
     m_shooter.setDefaultCommand(new SetShooterServo(m_shooter, j_joystick));
-    b_runShooter.whileHeld(new Shoot(m_shooter, m_intake, m_bts));
+    b_runShooter.whileHeld(new ShootConstant(m_shooter, m_intake, m_bts));
     b_intakeSpin.whileHeld(new IntakeBall(m_intake, false));
    // b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     //b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
     b_overrideServo.whenPressed(new OverrideDistance(m_shooter));
     b_pivotToTarget.whileHeld(new PivotToTarget(m_shooter, m_driveTrain));
+    b_resetServoPos.whenPressed(new ResetServo(m_shooter));
     if (Constants.Controls.useGuitar) {
-      b_hanger_up_guitar.whileHeld(new HangUp(m_hanger));
-      b_hanger_down_guitar.whileHeld(new HangDown(m_hanger));
-      b_intakeSpin_rev_guitar.whileHeld(new IntakeBall(m_intake, true));
+      //.whileHeld(new HangUp(m_hanger));
+      //.whileHeld(new HangDown(m_hanger));
+      //.whileHeld(new IntakeBall(m_intake, true));
       b_intakeExtend_guitar.whileHeld(new IntakeOpen(m_intake));
       b_intakeRetract_guitar.whileHeld(new IntakeClose(m_intake));
     }else {
-      b_hanger_up.whileHeld(new HangUp(m_hanger));
-      b_hanger_down.whileHeld(new HangDown(m_hanger));
-      b_intakeSpin_rev.whileHeld(new IntakeBall(m_intake, true));
+      b_hanger_up_guitar.whileHeld(new HangUp(m_hanger));
+      b_hanger_down_guitar.whileHeld(new HangDown(m_hanger));
+      b_intakeSpin_rev_guitar.whileHeld(new IntakeBall(m_intake, true));
       b_intakeExtend.whileHeld(new IntakeOpen(m_intake));
       b_intakeRetract.whileHeld(new IntakeClose(m_intake));
     }
 
     //b_intakeToShoot.whileHeld(new IntakeToShoot(m_intake, m_bts));
   }
-
+//This is a comment
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

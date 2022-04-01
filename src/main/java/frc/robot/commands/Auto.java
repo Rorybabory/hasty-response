@@ -13,6 +13,5 @@ public class Auto extends SequentialCommandGroup {
                     new AutoMove(drive, 0.5, 1.0),
                     new AutoTurnUntilTarget(drive),
                     new PivotToTarget(shooter, drive),
-                    new Shoot(shooter, intake, bts));
     }
 }

@@ -13,8 +13,8 @@ import frc.robot.Constants;
 
 
 public class Shooter extends SubsystemBase {
-  private PWMTalonFX mc_flyWheel;
-  private PWMTalonFX mc_flyWheel2;
+  private PWMTalonFX mc_flyWheel_back;
+  private PWMTalonFX mc_flyWheel2_front;
   private Servo sv_servo_l;
   private Servo sv_servo_r;
   private NetworkTable nt_table;
@@ -24,8 +24,8 @@ public class Shooter extends SubsystemBase {
     sv_servo_l = new Servo(Constants.Shooter.SERVO_PWM);
     sv_servo_r = new Servo(Constants.Shooter.SERVO_PWM_2);
     isOverridden = false;
-    mc_flyWheel = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_0);
-    mc_flyWheel2 = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_1);
+    mc_flyWheel_back = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_0);
+    mc_flyWheel2_front = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_1);
     nt_table = NetworkTableInstance.getDefault().getTable("limelight");
   }
 
@@ -44,14 +44,14 @@ public class Shooter extends SubsystemBase {
     return sv_servo_l.get();
   }
   public void shoot(double speed){
-    mc_flyWheel.set(speed);
-    mc_flyWheel2.set(-speed);
+    mc_flyWheel_back.set(-speed);
+    mc_flyWheel2_front.set(-speed);
     System.out.println("shooting");
   }
 
   public void stopShoot(){
-    mc_flyWheel.set(0);
-    mc_flyWheel2.set(0);
+    mc_flyWheel_back.set(0);
+    mc_flyWheel2_front.set(0);
   }
   public void getEncoderDifference(){
     
