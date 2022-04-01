@@ -31,10 +31,7 @@ public class DriveTrain extends SubsystemBase
     private MotorControllerGroup spg_right;
     private DifferentialDrive dd_drive;
     // private Encoder enc_Left, enc_Right;
-    public AHRS NAVX = new AHRS(SerialPort.Port.kUSB);
-    public AHRS NAVX_2 = new AHRS(SerialPort.Port.kUSB1);
-    public AHRS NAVX_3 = new AHRS(SerialPort.Port.kOnboard);
-    public AHRS NAVX_4 = new AHRS(I2C.Port.kMXP);
+    public AHRS NAVX = new AHRS(I2C.Port.kOnboard);
     private DifferentialDriveOdometry o_odometry = new DifferentialDriveOdometry(new Rotation2d(0));
     boolean isSpark = false;
     
@@ -84,9 +81,7 @@ public class DriveTrain extends SubsystemBase
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
       SmartDashboard.putBoolean("NAVX1 Connected", NAVX.isConnected());
-      SmartDashboard.putBoolean("NAVX2 Connected", NAVX_2.isConnected());
-      SmartDashboard.putBoolean("NAVX3 Connected", NAVX_3.isConnected());
-      SmartDashboard.putBoolean("NAVX4 Connected", NAVX_4.isConnected());
+     
     }
     
 }
