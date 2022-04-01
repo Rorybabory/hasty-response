@@ -7,20 +7,18 @@ import frc.robot.subsystems.DriveTrain;
 public class AutoMove  extends CommandBase{
     private DriveTrain drive;
     private double speed;
-    private double time;
-    private Timer timer;
-    public AutoMove(DriveTrain dt, double speed, double time){
+    private double distance;
+    private double initDistance;
+    public AutoMove(DriveTrain dt, double speed, double dist){
         addRequirements(dt);
         drive = dt;
         this.speed = speed;
-        this.time = time;
-        timer = new Timer();
+        this.distance = dist;
     }
     @Override
     public void initialize(){
         System.out.println("initializing autonomous");
-        timer.reset();
-        timer.start();
+        initDistance = drive.getEncoder();
     }
     public void execute (){
         
@@ -32,7 +30,7 @@ public class AutoMove  extends CommandBase{
     }
     @Override
   public boolean isFinished() {
-    return (timer.get() > time);
+    return (drive.getEncoder()-initDistance)>distance;
   }
 } 
 
