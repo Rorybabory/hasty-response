@@ -31,7 +31,7 @@ public final class Constants {
         public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 1.0; //default
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
 
-        public static final double DRIVE_PIVOT_SPEED = 0.5;
+        public static final double DRIVE_PIVOT_SPEED = 0.3;
     }
     public static final class Lighting {
         public static final int RING_DIO = 2;

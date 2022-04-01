@@ -67,7 +67,9 @@ public class DriveTrain extends SubsystemBase
     double getEncoderRight() {
       return (sp_right1.getEncoder().getPosition() + sp_right2.getEncoder().getPosition())/2.0;
     }
-
+    public double getEncoder() {
+      return (getEncoderLeft()+getEncoderRight())/2.0;
+    }
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
