@@ -30,48 +30,78 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
         public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 1.0; //default
         public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
+
+        public static final double DRIVE_PIVOT_SPEED = 0.3;
+    }
+    public static final class Lighting {
+        public static final int RING_DIO = 2;
     }
     public static final class Controls {
+        public static final boolean useGuitar = false;
+
+        public static final int BUTTON_OVERRIDE_DISTANCE = 9;
         public static final int JOYSTICK_USB = 0;
+        public static final int GUITAR_USB = 1;
         public static final int BUTTON_SHOOT_FLYWHEEL = 1;
         public static final int BUTTON_INTAKE_ROLLER = 2;
         public static final int BUTTON_INTAKE_RETRACT = 3;
         public static final int BUTTON_INTAKE_EXTEND = 4;
+        public static final int BUTTON_INTAKE_REV = 5;
+        public static final int BUTTON_PIVOT_TO_TARGET = 6;
         public static final int BUTTON_HANGER_DOWN = 7;
         public static final int BUTTON_HANGER_UP = 8;
-        public static final int BUTTON_HANGER_CLOSE = 9;
-        public static final int BUTTON_HANGER_OPEN = 10;
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
-        public static final int BUTTON_BTS_ROLLER_REV = 5;
-        public static final int BUTTON_BTS_ROLLER = 6;
-
+        public static final int BUTTON_SHOOTER_RESET = 10;
+        
+        public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
+        public static final int BUTTON_INTAKE_RETRACT_GUITAR = 9;
+        public static final int BUTTON_INTAKE_REV_GUITAR = 3;
+        public static final int BUTTON_HANGER_UP_GUITAR = 4;
+        public static final int BUTTON_HANGER_DOWN_GUITAR = 5;
     }
     public static final class Pneumatics{
         public static final int SOLENOID_PCM_1 = 0; //Out
         public static final int SOLENOID_PCM_2 = 1; //In
     }
     public static final class Hanger {
-        public static final int HANGER_CAN = 9;
-        public static final int HANGER_CAN_2 = 8;
-        public static final int HANGER_SERVO_PWM = 4;
+        public static final int SOLINOID_1_1 = 2;
+        public static final int SOLINOID_1_2 = 3;
+
+        public static final int SOLINOID_2_1 = 4;
+        public static final int SOLINOID_2_2 = 5;
+
+        public static final int HANGER_SERVO_PWM = 8;
         public static final double HANGER_SERVO_POS_OPEN = 0;
         public static final double HANGER_SERVO_POS_CLOSED = 180;
+
+        public static final double HANGER_TOP = -40.0;
+        public static final double HANGER_BOTTOM = 0.2;
     }
     public static final class Shooter {
-        public static final double SHOOTER_SPEED = 0.667;
+        public static final double SHOOTER_SPEED = 1.0;
         public static final int SHOOTER_PWM_0 = 0;
         public static final int SHOOTER_PWM_1 = 1;
-        public static final int SERVO_PWM = 4;
+        public static final int SERVO_PWM = 7;
+        public static final int SERVO_PWM_2 = 8;
+        public static final boolean ADJUST_HOOD = true;
+    }
+    public static final class Vision {
+        public static final double VISION_TARGET_HEIGHT = 104.0; //inches
+        public static final double VISION_CAMERA_HEIGHT = 36.0; //inches
+        public static final double VISION_CAMERA_ANGLE = 31.5; //degrees
     }
     public static final class Intake {
-        public static final int INTAKE_SPARK_CAN = 7;
+        public static final int INTAKE_ROLLER_CAN = 9;
         public static final int INTAKE_DOG_HOUSE_PWM = 2;
         public static final int INTAKE_SOLENOID_PCM = 0;
         public static final int INTAKE_SOLENOID_PCM_2 = 1;
-        public static final double INTAKE_SPEED = .8;
+        public static final double INTAKE_ROLLER_SPEED = -0.5;
+        public static final double INTAKE_DOGHOUSE_SPEED = -1.0;
+
+        
     }
     public static final class BTS {
         public static final int BTS_ROLLER_PWM = 3;
-        public static final double BTS_SPEED = 0.75;
+        public static final double BTS_SPEED = 1.0;
     }
 }

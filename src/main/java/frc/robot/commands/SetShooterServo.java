@@ -34,10 +34,14 @@ public class SetShooterServo extends CommandBase {
   public void execute() {
     double value = joystick.getRawAxis(3);
     value = (value+1.0)/2.0;
-    // value*=0.93;
-    // value+=0.17;
-    m_shooter.setServoPosition(value);
-    System.out.println("servo pos is " + value);
+     value*=0.82-0.17;
+     value+=0.17;
+    System.out.println("Servo Value" + value);
+   
+      m_shooter.setServoPosition(value);
+  
+    System.out.println("servo pos is " + m_shooter.getServoPosition());
+    
   }
 
   // Called once the command ends or is interrupted.

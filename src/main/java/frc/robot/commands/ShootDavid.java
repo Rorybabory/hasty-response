@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /** An example command that uses an example subsystem. */
-public class Shoot extends CommandBase {
+public class ShootDavid extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter m_shooter;
   private final Intake m_intake;
@@ -30,7 +30,7 @@ public class Shoot extends CommandBase {
   private JoystickButton m_resetServo;
   protected Timer time;
   boolean setServoPos = false;
-  public Shoot(Shooter shooter, Intake intake, BTS bts) {
+  public ShootDavid(Shooter shooter, Intake intake, BTS bts) {
     m_shooter = shooter;
     m_intake = intake;
     m_bts = bts;
@@ -55,7 +55,7 @@ public class Shoot extends CommandBase {
     System.out.println("shooting");
     
     double distance = m_shooter.getDistance(); //inches
-    if (m_override.get() == false) {
+    /*if (m_override.get() == false) {
       if (distance < 105) {
         m_shooter.setServoPosition(0.78);
         speed = 0.7;
@@ -82,12 +82,24 @@ public class Shoot extends CommandBase {
     else{
       speed = .7;
     }
+*/
+    speed1 = ((Math.sqrt(19.6*(distance*0.0254)))/34.22)*2;
+    double a = (Math.atan(6/(distance*0.0254)));
 
-    speed1 = Math.sqrt(19.6*distance)/34.22;
-    System.out.println("speed: " + speed);
+    double j = 8.75*Math.sin(a);
+    double k = 8.75*Math.cos(a);
+    double f = (10-k);
+    double o = Math.sqrt(Math.pow(f,2)+Math.pow(j,2));
+    double e = (25*(o-9)*0.0164);
+
+    m_shooter.setServoPosition(e);
+
+    System.out.println("speed: " + speed1);
+    System.out.println("servo percent: " + e);
+    System.out.println("angle: " + a);
     System.out.println("overriding?" + m_override.get());
 
-    m_shooter.shoot(speed);
+    m_shooter.shoot(speed1);
 
   }
   public void stopAll() {

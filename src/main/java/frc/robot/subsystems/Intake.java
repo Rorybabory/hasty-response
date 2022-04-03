@@ -16,7 +16,7 @@ public class Intake extends SubsystemBase{
     private MotorController mc_doghouse;
     private DoubleSolenoid ds_extender;
     public Intake(){
-        mc_roller = new CANSparkMax(Constants.Intake.INTAKE_SPARK_CAN, MotorType.kBrushless);
+        mc_roller = new CANSparkMax(Constants.Intake.INTAKE_ROLLER_CAN, MotorType.kBrushless);
         mc_doghouse = new VictorSP(Constants.Intake.INTAKE_DOG_HOUSE_PWM);
         ds_extender = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Intake.INTAKE_SOLENOID_PCM, Constants.Intake.INTAKE_SOLENOID_PCM_2);
     }
@@ -28,9 +28,20 @@ public class Intake extends SubsystemBase{
     {
         ds_extender.set(Value.kReverse);
     }
-    public void enableMotor(){
-        mc_roller.set(Constants.Intake.INTAKE_SPEED);
-        mc_doghouse.set(-Constants.Intake.INTAKE_SPEED);
+    public void enableDoghouse() {
+        mc_doghouse.set(Constants.Intake.INTAKE_DOGHOUSE_SPEED);
+    }
+    public void disableDoghouse() {
+        mc_doghouse.disable();
+    }
+    public void enableMotor(boolean reverse){
+        if (reverse) {
+            mc_roller.set(-Constants.Intake.INTAKE_ROLLER_SPEED);
+            mc_doghouse.set(-Constants.Intake.INTAKE_DOGHOUSE_SPEED);
+        }else {
+            mc_roller.set(Constants.Intake.INTAKE_ROLLER_SPEED);
+            mc_doghouse.set(Constants.Intake.INTAKE_DOGHOUSE_SPEED);    
+        }
         System.out.println("running mc roller");
     }
     public void disableMotor(){

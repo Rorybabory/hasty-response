@@ -4,24 +4,24 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Intake;
+// import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter;
 
 /** An example command that uses an example subsystem. */
-public class IntakeBall extends CommandBase {
+public class ResetServo extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Intake m_intake;
-  private final boolean reverse;
+  private Shooter m_shoot;
+
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeBall(Intake i, boolean reverse) {
-    this.reverse = reverse;
-    m_intake = i;
+  public ResetServo(Shooter subsystem) {
+    m_shoot = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(i);
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -31,14 +31,13 @@ public class IntakeBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_intake.enableMotor(reverse);
+    m_shoot.setServoPosition(.7);
+    System.out.println("resetting servo");
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-      m_intake.disableMotor();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

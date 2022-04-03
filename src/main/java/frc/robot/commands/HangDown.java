@@ -11,15 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Hanger;
 
 /** An example command that uses an example subsystem. */
-public class HangMove extends CommandBase {
+public class HangDown extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Hanger s;
-  private double speed;
-
  
-  public HangMove(Hanger subsystem, double sp) {
+  public HangDown(Hanger subsystem) {
     s = subsystem;
-    speed = sp;
     addRequirements(subsystem);
   }
 
@@ -32,14 +29,13 @@ public class HangMove extends CommandBase {
 
   @Override
   public void execute() {
-    System.out.println("hanger move");
-    s.shoot(speed);
+    s.moveDown();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      s.stopShoot();
+    s.stop();
   }
 
   // Returns true when the command should end.
