@@ -28,8 +28,7 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_LEFT2 = 6;
         public static final int DRIVE_DIO_ENC_RIGHT1 =  9;
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
-        public static final double DRIVE_DISTANCE_PER_PULSE_LEFT = 1.0; //default
-        public static final double DRIVE_DISTANCE_PER_PULSE_RIGHT = 1.0; //default
+        public static final double DRIVE_DISTANCE_PER_PULSE = 1.22/28.04; //default
 
         public static final double DRIVE_PIVOT_SPEED = 0.3;
     }
