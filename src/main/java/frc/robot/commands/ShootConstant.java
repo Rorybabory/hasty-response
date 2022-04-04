@@ -62,15 +62,23 @@ public class ShootConstant extends CommandBase {
     System.out.println("overriding?" + m_override.get());
 
     double speed = 0.0;
+    double backPercent = 1.0;
     if (distance < Constants.Shooter.MIN_DIST) {
       speed = Constants.Shooter.MIN_SPEED;
     }else if (distance > Constants.Shooter.MAX_DIST) {
       speed = Constants.Shooter.MAX_SPEED;
     }else {
-      speed = (((distance - Constants.Shooter.MIN_DIST)/(Constants.Shooter.MAX_DIST-Constants.Shooter.MIN_DIST)) * (Constants.Shooter.MAX_SPEED-Constants.Shooter.MIN_SPEED)) + Constants.Shooter.MIN_SPEED;
+      speed = (((distance - Constants.Shooter.MIN_DIST) / (Constants.Shooter.MAX_DIST - Constants.Shooter.MIN_DIST)) * (Constants.Shooter.MAX_SPEED-Constants.Shooter.MIN_SPEED)) + Constants.Shooter.MIN_SPEED;
     }
+    double avg_dist = (Constants.Shooter.MIN_DIST + Constants.Shooter.MAX_DIST)/2.0;
+    if (distance <= avg_dist) {
+      backPercent = 1.0;
+    } else {
+      backPercent = (distance-avg_dist) / (Constants.Shooter.MAX_DIST-avg_dist) * (0.9 - 1.0) + 1.0;
+    }
+
     SmartDashboard.putNumber("Shooter Speed", speed);
-    m_shooter.shoot(speed);
+    m_shooter.shootAngled(speed, backPercent);
 
   }
   public void stopAll() {
