@@ -44,11 +44,15 @@ public class Shooter extends SubsystemBase {
     return sv_servo_l.get();
   }
   public void shoot(double speed){
-    mc_flyWheel_back.set(-speed*0.9);
+    mc_flyWheel_back.set(-speed);
     mc_flyWheel2_front.set(-speed);
     System.out.println("shooting");
   }
-
+  public void shootAngled(double speed, double backPercent){
+    mc_flyWheel_back.set(-speed*backPercent);
+    mc_flyWheel2_front.set(-speed);
+    System.out.println("shooting");
+  }
   public void stopShoot(){
     mc_flyWheel_back.set(0);
     mc_flyWheel2_front.set(0);
