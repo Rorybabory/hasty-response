@@ -83,6 +83,12 @@ public final class Constants {
         public static final int SERVO_PWM = 7;
         public static final int SERVO_PWM_2 = 8;
         public static final boolean ADJUST_HOOD = true;
+
+        public static final double MIN_SPEED = 0.46;
+        public static final double MAX_SPEED = 0.62;
+
+        public static final double MIN_DIST = 95;
+        public static final double MAX_DIST = 230;
     }
     public static final class Vision {
         public static final double VISION_TARGET_HEIGHT = 104.0; //inches

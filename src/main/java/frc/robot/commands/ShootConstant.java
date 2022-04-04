@@ -7,6 +7,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
@@ -60,8 +61,16 @@ public class ShootConstant extends CommandBase {
     System.out.println("speed: " + speed);
     System.out.println("overriding?" + m_override.get());
 
-
-    m_shooter.shoot(0.5);
+    double speed = 0.0;
+    if (distance < Constants.Shooter.MIN_DIST) {
+      speed = Constants.Shooter.MIN_SPEED;
+    }else if (distance > Constants.Shooter.MAX_DIST) {
+      speed = Constants.Shooter.MAX_SPEED;
+    }else {
+      speed = (((distance - Constants.Shooter.MIN_DIST)/(Constants.Shooter.MAX_DIST-Constants.Shooter.MIN_DIST)) * (Constants.Shooter.MAX_SPEED-Constants.Shooter.MIN_SPEED)) + Constants.Shooter.MIN_SPEED;
+    }
+    SmartDashboard.putNumber("Shooter Speed", speed);
+    m_shooter.shoot(speed);
 
   }
   public void stopAll() {
