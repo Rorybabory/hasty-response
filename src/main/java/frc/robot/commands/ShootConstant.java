@@ -74,7 +74,7 @@ public class ShootConstant extends CommandBase {
     if (distance <= avg_dist) {
       backPercent = 1.0;
     } else {
-      backPercent = (distance-avg_dist) / (Constants.Shooter.MAX_DIST-avg_dist) * (0.9 - 1.0) + 1.0;
+      backPercent = (distance-avg_dist) / (Constants.Shooter.MAX_DIST-avg_dist) * (-0.1) + 1.0;
     }
 
     SmartDashboard.putNumber("Shooter Speed", speed);
