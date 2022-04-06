@@ -75,7 +75,7 @@ public class DriveTrain extends SubsystemBase
       return ((sp_right1.getEncoder().getPosition() + sp_right2.getEncoder().getPosition())/2.0-startEncoderVal_right)*Constants.DriveTrain.DRIVE_DISTANCE_PER_PULSE;
     }
     public double getEncoder() {
-      return ((getEncoderLeft()+getEncoderRight())/2.0);
+      return (((-getEncoderLeft())+getEncoderRight())/2.0);
     }
     @Override
     public void periodic() {
@@ -88,6 +88,8 @@ public class DriveTrain extends SubsystemBase
 
       SmartDashboard.putNumber("Encoder Left 1 Raw", sp_left1.getEncoder().getPosition());
       SmartDashboard.putNumber("Encoder Left 2 Raw", sp_left2.getEncoder().getPosition());
+
+      SmartDashboard.putNumber("Encoder Avg", getEncoder());
       o_odometry.update(NAVX.getRotation2d(), -getEncoderLeft(), getEncoderRight());
       SmartDashboard.putData("Field", f_field);
       f_field.setRobotPose(o_odometry.getPoseMeters());
