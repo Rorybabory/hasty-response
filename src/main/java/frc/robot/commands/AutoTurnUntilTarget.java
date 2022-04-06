@@ -21,7 +21,7 @@ public class AutoTurnUntilTarget extends CommandBase {
         System.out.println("initializing autonomous");
     }
     public void execute (){
-        drive.arcadeDrive(0.5, 0., 0.);
+        drive.arcadeDrive(0.2, 0., 0.);
     }
     @Override
     public void end(boolean interrupted) {
