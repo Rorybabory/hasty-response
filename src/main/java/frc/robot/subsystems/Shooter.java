@@ -50,7 +50,9 @@ public class Shooter extends SubsystemBase {
   }
   public void shootAngled(double speed, double backPercent){
     mc_flyWheel_back.set(-speed*backPercent);
+    System.out.println("Back Motor:" + -speed*backPercent);
     mc_flyWheel2_front.set(-speed);
+    System.out.println("Front Motor" + -speed);
     System.out.println("shooting");
   }
   public void stopShoot(){
