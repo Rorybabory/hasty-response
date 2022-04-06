@@ -40,7 +40,7 @@ public class SetShooterServo extends CommandBase {
    
       m_shooter.setServoPosition(value);
   
-    //System.out.println("servo pos is " + m_shooter.getServoPosition());
+    //System.out.println("servo pos is " + m_shooter.getServoPosition()); 
     
   }
 
