@@ -19,7 +19,7 @@ public class Shooter extends SubsystemBase {
   private Servo sv_servo_r;
   private NetworkTable nt_table;
   public boolean isOverridden;
-
+  
   public Shooter() {
     sv_servo_l = new Servo(Constants.Shooter.SERVO_PWM);
     sv_servo_r = new Servo(Constants.Shooter.SERVO_PWM_2);

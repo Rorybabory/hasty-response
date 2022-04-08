@@ -22,6 +22,7 @@ import frc.robot.commands.IntakeOpen;
 import frc.robot.commands.OverrideDistance;
 import frc.robot.commands.PivotToTarget;
 import frc.robot.commands.PrintLog;
+import frc.robot.commands.RecordBall;
 import frc.robot.commands.ResetServo;
 import frc.robot.commands.SetShooterServo;
 import frc.robot.commands.Shoot;
@@ -79,6 +80,7 @@ public class RobotContainer {
   private final JoystickButton b_hanger_down_guitar;
   private final JoystickButton b_resetServoPos;
   private final JoystickButton b_printLog;
+  private final JoystickButton b_recordHit;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     b_hanger_up = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_UP);
@@ -90,6 +92,7 @@ public class RobotContainer {
     b_intakeSpin_rev = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_REV);
     b_pivotToTarget = new JoystickButton(j_joystick, Constants.Controls.BUTTON_PIVOT_TO_TARGET);
     b_printLog = new JoystickButton(j_joystick, Constants.Controls.BUTTON_PRINT_LOG);
+    b_recordHit = new JoystickButton(j_guitar, Constants.Controls.BUTTON_RECORD_HIT_GUITAR);
     // b_hanger_open = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_OPEN);
     // b_hanger_closed = new JoystickButton(j_joystick, Constants.Controls.BUTTON_HANGER_CLOSE);
    // b_intakeToShoot = new JoystickButton(j_joystick, Constants.Controls.BUTTON_INTAKE_TO_SHOOT);
@@ -122,6 +125,7 @@ public class RobotContainer {
     b_pivotToTarget.whileHeld(new PivotToTarget(m_shooter, m_driveTrain));
     b_resetServoPos.whenPressed(new ResetServo(m_shooter));
     b_printLog.whenPressed(new PrintLog(m_fileIO));
+    b_recordHit.whenPressed(new RecordBall(m_fileIO));
     if (Constants.Controls.useGuitar) {
       //.whileHeld(new HangUp(m_hanger));
       //.whileHeld(new HangDown(m_hanger));

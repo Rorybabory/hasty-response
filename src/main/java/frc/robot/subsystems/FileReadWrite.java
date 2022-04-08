@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -13,17 +14,37 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class FileReadWrite extends SubsystemBase {
     private File log;
+    private ArrayList<Boolean> success;
+    private ArrayList<Double> speeds;
+    private ArrayList<Double> backPercents; 
     public FileReadWrite() {
         log = new File("/home/lvuser/log.txt");
         
     }
-    public void writeToLog(String message) {
+    public void addDataShoot(double speed, double backPercent) {
+        speeds.add(speed);
+        backPercents.add(backPercent);
+        success.add(false);
+        updateLog();
+    }
+    public void addDataSuccess() {
+        int lastIndex = success.size()-1;
+        success.set(lastIndex, true);
+        updateLog();
+    }
+    public void updateLog() {
         try {
-            System.out.println("wrote: " + message);
-            FileWriter log_writer = new FileWriter(log, true);
+            System.out.println("new log");
+            FileWriter log_writer = new FileWriter(log);
             BufferedWriter writer = new BufferedWriter(log_writer);
             PrintWriter print_writer = new PrintWriter(writer);
-            print_writer.println("[" + DriverStation.getMatchTime() + "]" + message);
+            print_writer.println("SUCCESSFUL SHOTS");
+            print_writer.println("----------------");
+            for (int i = 0; i < success.size(); i++) {
+                if (success.get(i).booleanValue()) {
+                    print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString());
+                }
+            }
             print_writer.close();
         } catch (IOException e) {
             System.out.println("Error writing to file: log.txt");
