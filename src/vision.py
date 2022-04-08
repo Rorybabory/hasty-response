@@ -32,8 +32,8 @@ cs.enableLogging()
 camera = cs.startAutomaticCapture(dev=1)
 usb1 = cs.startAutomaticCapture(dev=0)
 
-camera.setResolution(480, 360)
-usb1.setResolution(480, 360)
+camera.setResolution(640, 480)
+usb1.setResolution(640, 480)
 
 
 sink = cs.getVideo()
