@@ -8,7 +8,7 @@ import frc.robot.subsystems.Intake;
 public class AutoForwardIntake extends CommandBase {
     private DriveTrain drive;
     private Intake intake;
-    private double speed = 0.2;
+    private double speed = 0.5;
     private double distance; //in meters 
     private double initDistance;
     public AutoForwardIntake(DriveTrain dt, Intake i, double dist){

@@ -82,7 +82,7 @@ public class Shooter extends SubsystemBase {
     if (!tv.exists()) {
       System.out.println("ERROR: INVALID NETWORK TABLE ENTRY TV");
     }
-    return tv.getBoolean(true);
+    return (int)tv.getNumber(0.0) == 1;
   }
   public double getDistance() {
     double targetOffsetAngle_Vertical = getTY();
