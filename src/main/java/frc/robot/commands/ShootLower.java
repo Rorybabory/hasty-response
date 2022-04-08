@@ -55,7 +55,7 @@ public class ShootLower extends CommandBase {
     System.out.println("shooting");
     
 
-    m_shooter.shootRear(.6);
+    m_shooter.shootRear(.4);
 
   }
   public void stopAll() {
