@@ -38,7 +38,7 @@ public class Shooter extends SubsystemBase {
   public void setServoPosition(double value) { //value is 0 to 1
     sv_servo_l.set(value);
     sv_servo_r.set(value);
-    System.out.println("setting servo position to " + value);
+    //System.out.println("setting servo position to " + value);
   }
   public double getServoPosition() {
     return sv_servo_l.get();
@@ -82,7 +82,7 @@ public class Shooter extends SubsystemBase {
     if (!tv.exists()) {
       System.out.println("ERROR: INVALID NETWORK TABLE ENTRY TV");
     }
-    return (int)tv.getNumber(0.0) == 1;
+    return tv.getNumber(0.0).intValue() == 1;
   }
   public double getDistance() {
     double targetOffsetAngle_Vertical = getTY();
@@ -97,6 +97,10 @@ public class Shooter extends SubsystemBase {
     }else {
       return distanceFromLimelightToGoalInches;
     }
+  }
+  public void shootRear(double back_speed){
+    mc_flyWheel_back.disable();
+    mc_flyWheel2_front.set(-back_speed);;
   }
   public void overrideCamera() {
     if(isOverridden){
