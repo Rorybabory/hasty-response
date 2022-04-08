@@ -29,10 +29,8 @@ public class ShootConstant extends CommandBase {
   private double speed;
   private double speed1;
   private Joystick m_joy;
-  private JoystickButton m_override;
-  private JoystickButton m_resetServo;
   protected Timer time;
-
+  boolean firstLoop = true;
   boolean setServoPos = false;
   public ShootConstant(Shooter shooter, Intake intake, BTS bts, FileReadWrite fileIO) {
     m_shooter = shooter;
@@ -41,8 +39,6 @@ public class ShootConstant extends CommandBase {
     m_fileIO = fileIO;
     time = new Timer();
     m_joy = new Joystick(0);
-    m_override = new JoystickButton(m_joy, 9);
-    m_resetServo = new JoystickButton(m_joy, 10);
 
   }
 
@@ -53,10 +49,6 @@ public class ShootConstant extends CommandBase {
   }
   
   public void runShoot() { //seperated to reduce reduncency with auto.
-    if (time.hasElapsed(1.0)) {
-      m_intake.enableDoghouse();
-      m_bts.setRoller(Constants.BTS.BTS_SPEED);
-    }
     System.out.println("time running command is: " + time.get());
     System.out.println("shooting");
     
@@ -64,7 +56,6 @@ public class ShootConstant extends CommandBase {
       
     
     System.out.println("speed: " + speed);
-    System.out.println("overriding?" + m_override.get());
 
     double speed = 0.0;
     double backPercent = 1.0;
@@ -82,10 +73,17 @@ public class ShootConstant extends CommandBase {
     } else {
       backPercent = (distance-avg_dist) / (Constants.Shooter.MAX_DIST-avg_dist) * (-0.1) + 1.0;
     }
-    m_fileIO.writeToLog("speed is " + speed + " back percent is " + backPercent);
     SmartDashboard.putNumber("Shooter Speed", speed);
     m_shooter.shootAngled(speed, backPercent);
-
+    
+    if (time.hasElapsed(1.0)) {
+      m_intake.enableDoghouse();
+      m_bts.setRoller(Constants.BTS.BTS_SPEED);
+      if (firstLoop) {
+        m_fileIO.addDataShoot(speed, backPercent);
+      }
+      firstLoop = false;
+    }
   }
   public void stopAll() {
     m_shooter.stopShoot();

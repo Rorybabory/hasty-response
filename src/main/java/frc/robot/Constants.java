@@ -56,6 +56,7 @@ public final class Constants {
 
         public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
         public static final int BUTTON_INTAKE_RETRACT_GUITAR = 9;
+        public static final int BUTTON_RECORD_HIT_GUITAR = 2;
         public static final int BUTTON_INTAKE_REV_GUITAR = 3;
         public static final int BUTTON_HANGER_UP_GUITAR = 4;
         public static final int BUTTON_HANGER_DOWN_GUITAR = 5;

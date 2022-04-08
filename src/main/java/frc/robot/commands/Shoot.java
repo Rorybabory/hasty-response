@@ -86,7 +86,6 @@ public class Shoot extends CommandBase {
     speed1 = Math.sqrt(19.6*distance)/34.22;
     // System.out.println("speed: " + speed);
     // System.out.println("overriding?" + m_override.get());
-
     m_shooter.shoot(speed);
 
   }
