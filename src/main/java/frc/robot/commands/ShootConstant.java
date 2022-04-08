@@ -66,7 +66,7 @@ public class ShootConstant extends CommandBase {
     }else {
       speed = (((distance - Constants.Shooter.MIN_DIST) / (Constants.Shooter.MAX_DIST - Constants.Shooter.MIN_DIST)) * (Constants.Shooter.MAX_SPEED-Constants.Shooter.MIN_SPEED)) + Constants.Shooter.MIN_SPEED;
     }
-    speed *= 0.95;
+    speed *= 0.98;
     double avg_dist = (Constants.Shooter.MIN_DIST + Constants.Shooter.MAX_DIST)/2.0;
     if (distance <= avg_dist) {
       backPercent = 1.0;

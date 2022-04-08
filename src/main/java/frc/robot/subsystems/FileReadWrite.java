@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class FileReadWrite extends SubsystemBase {
     private File log;
-    private ArrayList<Boolean> success;
-    private ArrayList<Double> speeds;
-    private ArrayList<Double> backPercents; 
+    private ArrayList<Boolean> success = new ArrayList<Boolean>();
+    private ArrayList<Double> speeds = new ArrayList<Double>();
+    private ArrayList<Double> backPercents = new ArrayList<Double>(); 
     public FileReadWrite() {
         log = new File("/home/lvuser/log.txt");
         
@@ -40,10 +40,10 @@ public class FileReadWrite extends SubsystemBase {
             PrintWriter print_writer = new PrintWriter(writer);
             print_writer.println("SUCCESSFUL SHOTS");
             print_writer.println("----------------");
-            for (int i = 0; i < success.size(); i++) {
-                if (success.get(i).booleanValue()) {
-                    print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString());
-                }
+            for (int i = 0; i < speeds.size(); i++) {
+                // if (success.get(i).booleanValue()) {
+                // }
+                print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString());
             }
             print_writer.close();
         } catch (IOException e) {
