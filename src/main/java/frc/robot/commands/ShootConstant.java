@@ -47,6 +47,10 @@ public class ShootConstant extends CommandBase {
     time.start();
     setServoPos = false;
     firstLoop = true;
+    if (!m_intake.isDown) {
+      m_intake.extendIntake();
+    }
+    
   }
   
   public void runShoot() { //seperated to reduce reduncency with auto.
@@ -84,6 +88,9 @@ public class ShootConstant extends CommandBase {
         m_fileIO.addDataShoot(speed, backPercent, distance);
       }
       firstLoop = false;
+    }
+    if (time.hasElapsed(2.0)) {
+      m_intake.disablePneumatics();
     }
   }
   public void stopAll() {

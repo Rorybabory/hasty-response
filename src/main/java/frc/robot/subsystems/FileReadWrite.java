@@ -47,6 +47,13 @@ public class FileReadWrite extends SubsystemBase {
                     print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString() + "\tdistance: " + distances.get(i).toString());
                 }
             }
+            print_writer.println("UNSUCCESSFUL SHOTS");
+            print_writer.println("----------------");
+            for (int i = 0; i < speeds.size(); i++) {
+                if (!success.get(i).booleanValue()) {
+                    print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString() + "\tdistance: " + distances.get(i).toString());
+                }
+            }
             print_writer.close();
         } catch (IOException e) {
             System.out.println("Error writing to file: log.txt");
