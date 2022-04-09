@@ -46,6 +46,7 @@ public class ShootConstant extends CommandBase {
   public void initialize() {
     time.start();
     setServoPos = false;
+    firstLoop = true;
   }
   
   public void runShoot() { //seperated to reduce reduncency with auto.
@@ -80,7 +81,7 @@ public class ShootConstant extends CommandBase {
       m_intake.enableDoghouse();
       m_bts.setRoller(Constants.BTS.BTS_SPEED);
       if (firstLoop) {
-        m_fileIO.addDataShoot(speed, backPercent);
+        m_fileIO.addDataShoot(speed, backPercent, distance);
       }
       firstLoop = false;
     }

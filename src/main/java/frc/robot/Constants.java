@@ -30,7 +30,7 @@ public final class Constants {
         public static final int DRIVE_DIO_ENC_RIGHT2 =  8;
         public static final double DRIVE_DISTANCE_PER_PULSE = 1.22/28.04; //default
 
-        public static final double DRIVE_PIVOT_SPEED = 0.55;
+        public static final double DRIVE_PIVOT_SPEED = 0.2;
         public static final double DRIVE_SPEED_MULTIPLIER = 0.8;
     }
     public static final class Lighting {

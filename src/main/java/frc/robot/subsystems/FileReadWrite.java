@@ -17,13 +17,15 @@ public class FileReadWrite extends SubsystemBase {
     private ArrayList<Boolean> success = new ArrayList<Boolean>();
     private ArrayList<Double> speeds = new ArrayList<Double>();
     private ArrayList<Double> backPercents = new ArrayList<Double>(); 
+    private ArrayList<Double> distances = new ArrayList<Double>(); 
     public FileReadWrite() {
         log = new File("/home/lvuser/log.txt");
         
     }
-    public void addDataShoot(double speed, double backPercent) {
+    public void addDataShoot(double speed, double backPercent, double distance) {
         speeds.add(speed);
         backPercents.add(backPercent);
+        distances.add(distance);
         success.add(false);
         updateLog();
     }
@@ -41,9 +43,9 @@ public class FileReadWrite extends SubsystemBase {
             print_writer.println("SUCCESSFUL SHOTS");
             print_writer.println("----------------");
             for (int i = 0; i < speeds.size(); i++) {
-                // if (success.get(i).booleanValue()) {
-                // }
-                print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString());
+                if (success.get(i).booleanValue()) {
+                    print_writer.println("speed: " + speeds.get(i).toString() + " \tback percent: " + backPercents.get(i).toString() + "\tdistance: " + distances.get(i).toString());
+                }
             }
             print_writer.close();
         } catch (IOException e) {
