@@ -15,6 +15,8 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
   private PWMTalonFX mc_flyWheel_back;
   private PWMTalonFX mc_flyWheel2_front;
+  // private TalonFX mc_flyWheel_back;
+  // private TalonFX mc_flyWheel2_front;
   private Servo sv_servo_l;
   private Servo sv_servo_r;
   private NetworkTable nt_table;
@@ -26,6 +28,8 @@ public class Shooter extends SubsystemBase {
     isOverridden = false;
     mc_flyWheel_back = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_0);
     mc_flyWheel2_front = new PWMTalonFX(Constants.Shooter.SHOOTER_PWM_1);
+    // mc_flyWheel_back = new TalonFX(Constants.Shooter.SHOOTER_PWM_0);
+    // mc_flyWheel2_front = new TalonFX(Constants.Shooter.SHOOTER_PWM_1);
     nt_table = NetworkTableInstance.getDefault().getTable("limelight");
   }
 

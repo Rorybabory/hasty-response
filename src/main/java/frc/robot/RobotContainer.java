@@ -21,6 +21,7 @@ import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
 import frc.robot.commands.OverrideDistance;
 import frc.robot.commands.PivotToTarget;
+import frc.robot.commands.PivotToTargetNew;
 import frc.robot.commands.PrintLog;
 import frc.robot.commands.RecordBall;
 import frc.robot.commands.ResetServo;
@@ -122,7 +123,7 @@ public class RobotContainer {
    // b_hanger_open.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_OPEN));
     //b_hanger_closed.whenPressed(new HangerHook(m_hanger, Constants.Hanger.HANGER_SERVO_POS_CLOSED));
     b_overrideServo.whenPressed(new OverrideDistance(m_shooter));
-    b_pivotToTarget.whileHeld(new PivotToTarget(m_shooter, m_driveTrain));
+    b_pivotToTarget.whileHeld(new PivotToTargetNew(m_shooter, m_driveTrain));
     b_resetServoPos.whenPressed(new ResetServo(m_shooter));
     b_printLog.whenPressed(new PrintLog(m_fileIO));
     b_recordHit.whenPressed(new RecordBall(m_fileIO));

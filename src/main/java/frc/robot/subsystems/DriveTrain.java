@@ -63,7 +63,10 @@ public class DriveTrain extends SubsystemBase
         // enc_Right.reset();
         
         NAVX.zeroYaw();
-    }    
+    }
+    public double getAngle() {
+      return NAVX.getAngle();
+    }
     public void arcadeDrive(double x, double y, double z){
       dd_drive.arcadeDrive(x*Constants.DriveTrain.DRIVE_SPEED_MULTIPLIER, (y*.7));
       System.out.println("running arcade drive");
