@@ -35,13 +35,18 @@ public class PivotToTarget extends CommandBase {
         String debug = "";
         double tx = m_shooter.getTX();
         if (Math.abs(tx) > 2) {
-            System.out.println("pivoting");
-            if (tx > 0) {
-                m_drive.arcadeDrive(Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn right
-                debug = "turn right";
+            if (m_shooter.getTV()) {
+                System.out.println("pivoting");
+                if (tx > 0) {
+                    m_drive.arcadeDrive(Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn right
+                    debug = "turn right";
+                }else {
+                    m_drive.arcadeDrive(-Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn left
+                    debug = "turn left";
+                }
             }else {
-                m_drive.arcadeDrive(-Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn left
-                debug = "turn left";
+                m_drive.arcadeDrive(Constants.DriveTrain.DRIVE_PIVOT_SPEED, 0, 0); // turn right
+                debug = "target not found, spinning until target is seen";
             }
         }else {
             debug = "seeing target";
