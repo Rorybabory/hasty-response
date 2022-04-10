@@ -53,6 +53,7 @@ public final class Constants {
         public static final int BUTTON_INTAKE_TO_SHOOT = 11;
         public static final int BUTTON_SHOOTER_RESET = 10;
         public static final int BUTTON_PRINT_LOG = 10;
+        public static final int BUTTON_FINE_TUNE = 9;
 
         public static final int BUTTON_INTAKE_EXTEND_GUITAR = 8;
         public static final int BUTTON_INTAKE_RETRACT_GUITAR = 9;
