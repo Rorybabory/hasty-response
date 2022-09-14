@@ -40,5 +40,10 @@ public class Auto extends SequentialCommandGroup {
             new ShootConstant(shooter, intake, bts, fileIO));
             
     }
+    private void AutoTest(DriveTrain drive, Shooter shooter, Intake intake, BTS bts, FileReadWrite fileIO) {
+        addCommands(
+            new AutoMove(drive, -.25, 0.5)
+        );
+    }
 
 }
