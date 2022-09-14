@@ -10,7 +10,7 @@ import frc.robot.subsystems.Shooter;
 public class Auto extends SequentialCommandGroup {
     public Auto(DriveTrain drive, Shooter shooter, Intake intake, BTS bts, FileReadWrite fileIO) {
         //Auto2(drive, shooter, intake, bts, fileIO);
-        Auto4(drive, shooter, intake, bts, fileIO);
+        AutoTest(drive, shooter, intake, bts, fileIO);
     }
     private void Auto1(DriveTrain drive, Shooter shooter, Intake intake, BTS bts, FileReadWrite fileIO) { //Uses limelight to lock onto target: shoots two balls
         addCommands(new AutoIntakeOpen(intake),
